@@ -123,7 +123,7 @@ RESPONSE RULES
 8. Focus on WHAT SHE BUILT and HOW, and the results`
 
 const ChatBot = () => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
