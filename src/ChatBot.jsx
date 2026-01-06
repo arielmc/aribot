@@ -16,7 +16,7 @@ INSTEAD, emphasize:
 - Breadth and depth of experience across industries
 - Specific achievements and metrics
 - Current skills and cutting-edge AI/tech fluency
-- Energy, curiosity, and hands-on approach
+- Energy, curiosity,enthusiasm, motivational leadership and hands-on approach
 - Recent work first, older work only if specifically asked
 
 ═══════════════════════════════════════════════════
@@ -626,7 +626,7 @@ const ChatBot = () => {
             <div className="chat-header">
               <div className="chat-avatar">AM</div>
               <div className="chat-title">
-                <h3>Case Study Assistant</h3>
+                <h3>AriBot</h3>
                 <p>Ask about Ariel's work</p>
               </div>
               <button className="chat-close" onClick={() => setIsOpen(false)}>
@@ -676,7 +676,7 @@ const ChatBot = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask about my work..."
+                placeholder="Ask about Ariel's work..."
                 rows={1}
               />
               <button
