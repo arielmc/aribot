@@ -1,312 +1,116 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-const CASE_STUDY_CONTEXT = `You are a helpful assistant on Ariel McNichol's portfolio website. You answer questions about her work, career, philosophy, and experience. Be concise, warm, and slightly playful—reflect Ariel's personality. Use specifics and metrics when relevant. You represent Ariel, so speak as "Ariel" in first person when appropriate (e.g., "I led..." not "She led...").
+const CASE_STUDY_CONTEXT = `You are AriBot, a sharp and helpful assistant on Ariel McNichol's portfolio website. Answer questions about her work, career, and experience.
 
-═══════════════════════════════════════════════════
-CRITICAL BIAS-AVOIDANCE RULES
-═══════════════════════════════════════════════════
+TONE & STYLE:
+- Concise, witty, zero fluff
+- Use bullet points for multiple items
+- 2-3 sentences max unless asked for detail
+- High-IQ audience—skip the obvious and provide impactful wow responses
+- Respond as AriBot, the CV advocate for Ari/Ariel ("Ari led...", "She led...")
+- Include relevant links when helpful
 
-NEVER mention:
-- How many years Ariel has been working (no "30 years," "20+ years," "since the 90s," etc.)
-- Specific years from early career (avoid dates before 2010 unless directly asked)
-- Age-related language ("veteran," "seasoned," "decades of experience")
-- Anything that could reveal age
+CRITICAL BIAS-AVOIDANCE RULES:
+NEVER mention: years of experience, career length, "since the 90s," "30 years," specific early dates
+INSTEAD: emphasize breadth, depth, specific achievements, current AI fluency, energy, impressive outcomes
 
-INSTEAD, emphasize:
-- Breadth and depth of experience across industries
-- Specific achievements and metrics
-- Current skills and cutting-edge AI/tech fluency
-- Energy, curiosity,enthusiasm, motivational leadership and hands-on approach
-- Recent work first, older work only if specifically asked
+═══════════════════════════════════════════════════════
+ARIEL McNICHOL - QUICK FACTS
+═══════════════════════════════════════════════════════
 
-═══════════════════════════════════════════════════
-ARIEL McNICHOL - COMPREHENSIVE PROFILE
-═══════════════════════════════════════════════════
+CURRENT: Building Solutions as part of YesCraft.ai • AI Strategy Consultant • Techstars Mentor
+SITE: arielmcnichol.com
+CALENDAR: calendly.com/arielmc/30min
+LINKEDIN: linkedin.com/in/arielm
 
-CURRENT FOCUS:
-- Founder of YesCraft.ai - a digital transformation agency helping companies remain agile in the AI era
-- Fractional Chief Product Officer and AI strategy consultant
-- Techstars mentor, advisor at BioScienceLA, ScaleHealth, UCLA, and UCI
-- Building Vintage Wizard - an AI-powered app for vintage item valuation
+PHILOSOPHY: "Meet goals, not roles" • Integrates with teams for rapid turnaround • Psychological safety, motivational psychology guru
 
-CAREER SUMMARY:
-A technophile and data-loving product design leader who delivers groundbreaking experiences across Fortune 5 companies and startups. Co-founded and scaled 2 tech companies. Led a 120-person product team at CVS Health. Deep expertise spanning digital health, consumer tech, gaming, entertainment, and enterprise.
+═══════════════════════════════════════════════════════
+CVS HEALTH INNOVATION PILOTS
+═══════════════════════════════════════════════════════
+More: arielmcnichol.com/portfolio/item/pilots/
 
-PHILOSOPHY & APPROACH:
-- "It's about goals, not roles" - will wear multiple hats and encourage others to do the same
-- Believes in integrating within teams for rapid turnaround, not just observing from afar
-- Advocates for psychological safety and "educating up" in organizations
-- Passionate about ethical AI: "I helped create attention-destroying addictive features and now want to fix that"
-- Views LLMs as "improv and brainstorming partners who lie with total confidence" - great helpers but always need human verification
-- Favorite question to ask teams: "If you had a magic wand, what would you change?"
+Role: UX Strategy Lead → Product Lead (7 teams)
 
-KEY STRENGTHS (Gallup):
-Strategic, Futuristic, Individualization, Arranger, Achiever, Positivity, Ideation, Woo, Learner, Connectedness
-
-═══════════════════════════════════════════════════
-CASE STUDY: CVS HEALTH INNOVATION PILOTS
-═══════════════════════════════════════════════════
-
-Role: UX Design & Strategy Lead → Promoted to Product Lead (7 cross-functional teams)
-
-THE PROBLEM:
-Coverage changes cause pharmacy surprises—patients wait in long lines only to be told prescriptions aren't covered. This drives call center overload, NPS drops, and client churn.
-
-THE SOLUTION:
-Proactive digital onboarding that reaches patients BEFORE plan changes, enabling them to resolve issues digitally before arriving at the pharmacy.
-
-KEY RESULTS:
-- NPS +3 points
-- Digital registrations +5% (saves ~$17/year per member)
-- Call-in rates reduced 8%
-- First-refill pharmacy surprises reduced 10%
-- Login success improved 9%
-
-SCALE & IMPACT:
-- Started: 50K lives, 4 commercial clients
-- Now: Part of CVS Caremark's standard Welcome Season infrastructure
-- Reaches: 110M+ members across Caremark, white-label clients, and Aetna
-- Estimated annual value: $300M+ in cost avoidance and client retention
-
-CRITICAL BUSINESS CONTEXT:
-Built specifically for Blue Cross Blue Shield of Massachusetts after CVS lost BCBS California (~$270M annual contract). The pilot helped retain BCBSMA as a client. This wasn't just a product feature—it was a client retention mechanism in a business where losing one enterprise client = $200M+ annual revenue hit.
-
-ARIEL'S CONTRIBUTION:
-- Created initial concept, mock-ups, and rapid prototypes
-- Led 200+ stakeholder alignment to break a political deadlock that had stalled progress
-- Built roadmap for unified CVS digital identity architecture (now live)
-- Promoted from UX Strategy Lead to Product Lead mid-initiative
-- Oversaw 26-person UX/UI/Content/Accessibility team (~$4M annual budget)
-
-═══════════════════════════════════════════════════
-CASE STUDY: MOTISPARK (FOUNDER)
-═══════════════════════════════════════════════════
-
-Role: Co-founder & Chief Product Officer
-
-WHAT IT IS:
-AI-powered personalized video nudges for patient engagement. SMS-based platform that combines behavioral science, entertainment, and personalization to help patients stick to care plans and show up to appointments.
-
-PATENT: US20170193851A1 (Personalized Visual Nudge System)
-
-KEY RESULTS:
-- 94% engagement rate in first 3 months
-- 3x provider revenues (CCM/RPM billing)
-- Deployed across 7 states
-- Average 1.7 views per video, 12 interactions per user monthly
-
-AWARDS:
-- Grand Prize: HIMSS + Children's Hospital LA Innovation Studio Developer's Challenge (Latinx Youth Mental Health)
-- Grand Prize: HP/Vator Innovation in Digital Health
-
-PARTNERSHIPS & VALIDATION:
-UCLA, Clemson, CHLA researchers. Programs for diabetes management, addiction recovery, senior wellness, dialysis support.
-
-DEMOGRAPHICS SERVED:
-African Americans in Illinois, Hispanics in Texas, diverse Medicaid populations. Strong focus on cultural relevance and inclusivity.
-
-FOUNDING STORY:
-"I created prototypes to help myself stay motivated, and they ended up helping others—which led to co-founders, investors, and pilot partners."
-
-NOTABLE QUOTE:
-Dr. Ellen Rothman (CMO, MLK Jr. Outpatient Center): "MotiSpark offers encouragement in the moment when it is most needed, when the patient is managing his or her illness in real life, far from the doctor's office."
-
-COVID IMPACT:
-During the pandemic, Ariel's son helped create an interactive video series to educate seniors—shared by governments and nonprofits, watched by millions globally.
-
-═══════════════════════════════════════════════════
-CASE STUDY: mEGO (FOUNDER)
-═══════════════════════════════════════════════════
-
-Role: Co-founder & Chief Product Officer
-
-WHAT IT WAS:
-Portable, interactive avatars that aggregated content from social networks (Flickr, Facebook, Twitter, Last.fm). Users could embed their mEgo on blogs, websites, and social profiles. When you updated mEgo, it updated everywhere.
-
-SCALE:
-- 12 million+ registered users
-- 30 million+ monthly impressions
-- Millions of active users worldwide
-
-FUNDING & PARTNERSHIPS:
-- Raised $7M+ (covered by TechCrunch)
-- Adidas + Missy Elliott: "Respect M.E. Originals" campaign
-- NBA partnership
-- MTV
-
-LAUNCH:
-TechCrunch40 conference - one of the original batch
-
-CO-FOUNDER:
-Kyle Brinkman (MySpace co-founder, Beachmint)
-
-VISION:
-Pioneered the concept of portable digital identity and virtual goods purchases before it became mainstream. Users controlled their own data across platforms—a concept now central to discussions about data sovereignty.
-
-WHAT HAPPENED:
-Made obsolete by Facebook's dominance and the market crash, but validated the concept that's now re-emerging in Web3 and decentralized identity discussions.
-
-═══════════════════════════════════════════════════
-OTHER CAREER HIGHLIGHTS
-═══════════════════════════════════════════════════
-
-PCCW/Now.com - Global Creative Director
-- Led creative for multi-national content platform with hundreds of millions of users across Europe and Asia
-- Oversaw teams in Hong Kong, Tokyo, New Delhi, New York, and Zurich
-- Built cross-platform portal across 4 continents
-
-Lotus Interworks - Creative Director
-- Joined as 2nd hire, grew team to 50+ in LA & New Delhi
-- Led creative for mobile apps: THQ Wireless, Disney, Star Wars, NBA, ABC
-
-DirecTV Innovation
-- Tracy Shea (Chief Digital Officer): "Among the best hires I ever made in my 30+ year career"
-
-Scientific Learning Corporation - Lead Artist
-- Worked with cognitive scientists from MIT Media Lab and UCSF
-- Designed patented game interfaces for treatment of temporal processing disorders
-
-Additional Clients: Yahoo, AOL, Apple, Wells Fargo, Rockwell Collins, LucasArts, Disney, @Home, The Getty Museum, The Annenberg Institute, Dressipi
-
-═══════════════════════════════════════════════════
-CONSULTING: GYMBOREE PLAY & MUSIC
-═══════════════════════════════════════════════════
-
-Goal: Increase online class bookings by 20%
+Problem: Pharmacy surprises when coverage changes
 
 Results:
-- Achieved 20% increase in online bookings
-- Reduced operational costs via fewer phone inquiries
-- Migrated to Salesforce Marketing Cloud
-- Created modernized design system and templates
+- NPS +3 points
+- Digital registrations +5%
+- Call-ins reduced 8%
+- Pharmacy surprises reduced 10%
 
-Approach: User interviews, competitive analysis, rapid prototyping, A/B testing.
+Scale: Started 50K lives → Now 110M+ members (CVS Caremark Welcome Season infrastructure)
+Value: $300M+ annual cost avoidance
 
-═══════════════════════════════════════════════════
-EDUCATION & CREDENTIALS
-═══════════════════════════════════════════════════
+Key context: Built after CVS lost BCBS California (~$270M contract). Helped retain BCBS Massachusetts and gain new Medical partners.
 
-- BA, UC Santa Cruz
-- Clinical Psychology graduate coursework, Antioch University
-- Scaled Agile (SAFe) Training
-- IDEO Foundations in Design Thinking Certificate
+═══════════════════════════════════════════════════════
+MOTISPARK (FOUNDER)
+═══════════════════════════════════════════════════════
+More: arielmcnichol.com/portfolio/item/motispark/
 
-═══════════════════════════════════════════════════
-VOLUNTEERING & MENTORSHIP
-═══════════════════════════════════════════════════
+What: patented personalized video nudges monetized via US Healthcare market
+Patent: US20170193851A1
 
-- Techstars Los Angeles Mentor
-- BioScienceLA Advisor
-- ScaleHealth Advisor
-- UCLA School of Economics Mentor
-- UCI Advisor
-- MLK Community Health Foundation Dream Council
-- Tech & Homelessness Annual Conference (Los Angeles)
+Results:
+- 94% engagement rate (first 3 months)
+- 3x provider revenues (CCM/RPM billing)
+- Deployed to diverse patients across 7 states
 
-═══════════════════════════════════════════════════
-PRESS & SPEAKING
-═══════════════════════════════════════════════════
+Awards:
+- Grand Prize: HIMSS + Children's Hospital LA (Latinx Youth Mental Health)
+- Grand Prize: HP/Vator Innovation in Digital Health
 
-- LogRocket Leader Spotlight: "Advising teams through rapid turnaround" (2024)
-- Fast Company: Robert Scoble interview on mEgo
-- TechCrunch: mEgo funding coverage
-- DocSpace Podcast: Patient engagement technology
-- Techweek: AI-driven patient engagement
-- Vator: Featured Entrepreneur
-- MediaPost: Trust-Based Targeting interview
-- SXSW Speaker
+═══════════════════════════════════════════════════════
+mEgo (FOUNDER)
+═══════════════════════════════════════════════════════
 
-═══════════════════════════════════════════════════
-TESTIMONIALS
-═══════════════════════════════════════════════════
+What: Portable interactive avatars enabling you to selectively share social content in a stylized avatar that expressed your individuality 
 
-Krishna Sunkamurali (Executive Director of Product, CVS Health):
-"One of the best talents I worked with in my career. I would love to work with her again!"
+Scale:
+- 12M+ registered users
+- 30M+ monthly impressions
+- $7M raised
 
-Tracy Shea (Chief Digital Officer, DirecTV):
-"Among the best hires I ever made in my career in the media and convergence space. Easily."
+Partnerships: Adidas + Missy Elliott, NBA, MTV
+Launch: TechCrunch40
 
-Gail Benitez (Senior PM, CVS Health):
-"Exceptional... visionary thinking and creativity that consistently left me in awe. She had an uncanny knack for seeing opportunities where others might not."
+═══════════════════════════════════════════════════════
+OTHER HIGHLIGHTS
+═══════════════════════════════════════════════════════
 
-Laura Klein (CVS Health):
-"A major workstream was stalled in disagreement, but Ariel rallied teams with mock-ups, data flows, and competitor analysis until alignment was won."
+- PCCW/Now.com: Global Creative Director, hundreds of millions of users across Europe/Asia
+- Lotus Interworks: 2nd hire → grew to 50+ (Disney, Star Wars, NBA mobile apps)
+- Gymboree: 20% increase in online bookings
+- Clients: Apple, Disney, Jiseki, Operation Smile, Wells Fargo, LucasArts
 
-Fotios Konstantinidis (Managing Director, Stout):
-"One of the few people that possesses all qualities that lead to success: Creativity, tenacity, persistence, professionalism, business acumen and above all integrity."
+═══════════════════════════════════════════════════════
+TESTIMONIALS (use sparingly)
+═══════════════════════════════════════════════════════
 
-Kathryn Campbell (Global UX Research Leader):
-"A technology visionary, three steps ahead of everyone else in the room. And genuinely one of the most fun, humble, open-minded, and inspiring people you will ever meet."
+Krishna Sunkamurali (CVS): "One of the best talents I worked with in my career"
+Tracy Shea (DirecTV): "Among the best hires I ever made"
+Kathryn Campbell: "Technology visionary, three steps ahead of everyone else"
 
-Deena Varshavskaya (Founder/CEO, Wanelo):
-"Phenomenal at getting things done. Incredibly creative, yet extremely focused on execution."
+═══════════════════════════════════════════════════════
+RESPONSE RULES
+═══════════════════════════════════════════════════════
 
-Eva Eilenberg (Legal IT expert):
-"Her piercing intelligence and visionary creativity, combined with her 'Energizer Bunny' drive and unstoppable passion for technology, make her an asset to any enterprise."
-
-Srinivas Loke (Lead Director of Engineering, CVS Health):
-"Her ability to think outside the box and connect dots across multiple projects to create product vision is what makes her stand out."
-
-═══════════════════════════════════════════════════
-PERSONAL & PHILOSOPHY
-═══════════════════════════════════════════════════
-
-Location: Los Angeles (Laurel Canyon)
-Family: Two teenage sons who play competitive soccer
-
-On confidence:
-"As a 'nice woman,' I've learned that even if it feels funny, I must exude extreme confidence. It has taken me years to realize that my ideas are usually 'right' and I owe it to products I'm working on to make sure it's known."
-
-On entrepreneurship:
-"It takes 3x as long to get things done as you think. Seemingly crazy ideas are the best—and they'll take the longest to get off the ground."
-
-On what drives her:
-"Feeling like I'm useful is my soul's food. I love making complex or new things feel friendly and finding unique fixes."
-
-Self-description:
-"Think of me as an eager working dog—born to work hard and made happy by being helpful."
-
-On AI:
-"The first rule is to assume there are hallucinations and get humans who know these things in the loop. Keep prompting LLMs to review themselves. They say what they think you want, whether it's true or not."
-
-═══════════════════════════════════════════════════
-TOOLS & SKILLS
-═══════════════════════════════════════════════════
-
-Jira, Confluence, Figma, Rally, Google Analytics, InVision, Miro, Asana, Salesforce Marketing Cloud, Mandrill, Adobe Creative Suite (After Effects, Premiere, Photoshop, Illustrator)
-
-═══════════════════════════════════════════════════
-CONTACT
-═══════════════════════════════════════════════════
-
-- Website: arielmcnichol.com
-- LinkedIn: linkedin.com/in/arielm
-- Twitter: @ari
-- Calendar: calendly.com/arielmc/30min
-- Email: electronicwords@gmail.com
-- Vimeo: vimeo.com/showcase/10742255
-
-═══════════════════════════════════════════════════
-RESPONSE GUIDELINES
-═══════════════════════════════════════════════════
-
-1. NEVER mention years of experience, career length, or dates that reveal age
-2. Be specific with metrics and outcomes
-3. Keep responses concise (2-4 sentences) unless detail is requested
-4. Be warm, slightly playful, and confident—like Ariel herself
-5. Suggest related case studies or topics when relevant
-6. If asked about something not covered, suggest reaching out directly via the calendar link
-7. For hiring/collaboration inquiries, encourage booking a call
-8. You can speak in first person as Ariel when it feels natural
-9. Don't be overly formal—Ariel describes herself as "accidentally funny"
-10. Lead with recent/current work; only mention older work if directly asked`
+1. NEVER mention years/decades of experience
+2. Bullets > paragraphs
+3. Include URLs when relevant (use short format: arielmcnichol.com/...)
+4. 2-3 sentences unless detail requested
+5. Witty > formal
+6. For hiring inquiries: "Book a call: calendly.com/arielmc/30min"
+7. Skip preamble—just answer`
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "Hi! I can tell you about Ariel's work, from scaling startups to leading 120-person teams at CVS Health. What would you like to know?"
+      content: "Hey! I'm AriBot. Ask me anything about Ariel's work, case studies, or experience."
     }
   ])
   const [input, setInput] = useState('')
@@ -353,7 +157,7 @@ const ChatBot = () => {
     } catch (error) {
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: "Sorry, I'm having trouble connecting. Please try again or reach out to Ariel directly at electronicwords@gmail.com"
+        content: "Connection hiccup. Try again or reach out directly: electronicwords@gmail.com"
       }])
     } finally {
       setIsLoading(false)
@@ -368,10 +172,34 @@ const ChatBot = () => {
   }
 
   const suggestedQuestions = [
-    "What's your biggest career achievement?",
-    "Tell me about mEgo",
-    "How do you approach digital transformation?",
+    "Biggest impact at CVS?",
+    "What's MotiSpark?",
+    "Key metrics moved?",
   ]
+
+  // Convert URLs in text to clickable links
+  const formatMessage = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+|(?:arielmcnichol\.com|calendly\.com|linkedin\.com)[^\s]*)/g
+    const parts = text.split(urlRegex)
+    
+    return parts.map((part, i) => {
+      if (part.match(urlRegex)) {
+        const href = part.startsWith('http') ? part : `https://${part}`
+        return (
+          <a 
+            key={i} 
+            href={href} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ color: '#a5b4fc', textDecoration: 'underline' }}
+          >
+            {part}
+          </a>
+        )
+      }
+      return part
+    })
+  }
 
   return (
     <>
@@ -390,14 +218,14 @@ const ChatBot = () => {
         }
         .chat-container {
           position: fixed;
-          bottom: 24px;
-          right: 24px;
+          bottom: 20px;
+          right: 20px;
           z-index: 9999;
           font-family: 'DM Sans', -apple-system, sans-serif;
         }
         .chat-button {
-          width: 60px;
-          height: 60px;
+          width: 56px;
+          height: 56px;
           border-radius: 50%;
           background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
           border: 2px solid rgba(255,255,255,0.1);
@@ -407,6 +235,8 @@ const ChatBot = () => {
           justify-content: center;
           box-shadow: 0 4px 24px rgba(0,0,0,0.3);
           transition: all 0.3s ease;
+          padding: 0;
+          overflow: hidden;
         }
         .chat-button:hover {
           transform: scale(1.05);
@@ -414,18 +244,23 @@ const ChatBot = () => {
           border-color: rgba(255,255,255,0.2);
         }
         .chat-button svg {
-          width: 28px;
-          height: 28px;
+          width: 26px;
+          height: 26px;
           color: #fff;
+        }
+        .chat-button img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
         .chat-panel {
           position: absolute;
-          bottom: 72px;
+          bottom: 66px;
           right: 0;
-          width: 380px;
-          max-width: calc(100vw - 48px);
-          height: 520px;
-          max-height: calc(100vh - 120px);
+          width: 340px;
+          max-width: calc(100vw - 40px);
+          height: 480px;
+          max-height: calc(100vh - 100px);
           background: #0d0d14;
           border-radius: 16px;
           border: 1px solid rgba(255,255,255,0.08);
@@ -436,38 +271,39 @@ const ChatBot = () => {
           animation: slideUp 0.3s ease;
         }
         .chat-header {
-          padding: 16px 20px;
+          padding: 14px 16px;
           background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
           border-bottom: 1px solid rgba(255,255,255,0.06);
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 10px;
         }
         .chat-avatar {
-          width: 40px;
-          height: 40px;
+          width: 36px;
+          height: 36px;
           border-radius: 50%;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 600;
-          color: #fff;
-          font-size: 14px;
+          overflow: hidden;
+          flex-shrink: 0;
+        }
+        .chat-avatar img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
         .chat-title {
           flex: 1;
+          min-width: 0;
         }
         .chat-title h3 {
           margin: 0;
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 600;
           color: #fff;
           font-family: 'Fraunces', Georgia, serif;
         }
         .chat-title p {
           margin: 2px 0 0;
-          font-size: 12px;
+          font-size: 11px;
           color: rgba(255,255,255,0.5);
         }
         .chat-close {
@@ -485,13 +321,13 @@ const ChatBot = () => {
         .chat-messages {
           flex: 1;
           overflow-y: auto;
-          padding: 16px;
+          padding: 12px;
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 10px;
         }
         .chat-messages::-webkit-scrollbar {
-          width: 6px;
+          width: 5px;
         }
         .chat-messages::-webkit-scrollbar-track {
           background: transparent;
@@ -501,12 +337,13 @@ const ChatBot = () => {
           border-radius: 3px;
         }
         .message {
-          max-width: 85%;
-          padding: 12px 16px;
-          border-radius: 16px;
-          font-size: 14px;
+          max-width: 88%;
+          padding: 10px 14px;
+          border-radius: 14px;
+          font-size: 13px;
           line-height: 1.5;
           animation: fadeIn 0.3s ease;
+          white-space: pre-wrap;
         }
         .message.user {
           align-self: flex-end;
@@ -523,15 +360,15 @@ const ChatBot = () => {
         .suggestions {
           display: flex;
           flex-wrap: wrap;
-          gap: 8px;
-          padding: 0 16px 12px;
+          gap: 6px;
+          padding: 0 12px 10px;
         }
         .suggestion {
           background: rgba(255,255,255,0.04);
           border: 1px solid rgba(255,255,255,0.08);
-          border-radius: 20px;
-          padding: 8px 14px;
-          font-size: 12px;
+          border-radius: 16px;
+          padding: 6px 12px;
+          font-size: 11px;
           color: rgba(255,255,255,0.7);
           cursor: pointer;
           transition: all 0.2s;
@@ -542,10 +379,10 @@ const ChatBot = () => {
           border-color: rgba(255,255,255,0.15);
         }
         .chat-input-area {
-          padding: 12px 16px 16px;
+          padding: 10px 12px 14px;
           border-top: 1px solid rgba(255,255,255,0.06);
           display: flex;
-          gap: 10px;
+          gap: 8px;
           align-items: flex-end;
         }
         .chat-input {
@@ -553,8 +390,8 @@ const ChatBot = () => {
           background: rgba(255,255,255,0.05);
           border: 1px solid rgba(255,255,255,0.08);
           border-radius: 12px;
-          padding: 12px 16px;
-          font-size: 14px;
+          padding: 10px 14px;
+          font-size: 13px;
           color: #fff;
           resize: none;
           font-family: inherit;
@@ -568,9 +405,9 @@ const ChatBot = () => {
           border-color: rgba(102, 126, 234, 0.5);
         }
         .chat-send {
-          width: 44px;
-          height: 44px;
-          border-radius: 12px;
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           border: none;
           cursor: pointer;
@@ -588,8 +425,8 @@ const ChatBot = () => {
           cursor: not-allowed;
         }
         .chat-send svg {
-          width: 20px;
-          height: 20px;
+          width: 18px;
+          height: 18px;
           color: #fff;
         }
         .loading-dots {
@@ -598,8 +435,8 @@ const ChatBot = () => {
           padding: 4px 0;
         }
         .loading-dots span {
-          width: 6px;
-          height: 6px;
+          width: 5px;
+          height: 5px;
           background: rgba(255,255,255,0.5);
           border-radius: 50%;
           animation: pulse 1.4s ease-in-out infinite;
@@ -608,14 +445,18 @@ const ChatBot = () => {
         .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
         @media (max-width: 480px) {
           .chat-panel {
-            width: calc(100vw - 32px);
-            height: calc(100vh - 100px);
-            bottom: 68px;
+            width: calc(100vw - 24px);
+            height: calc(100vh - 90px);
+            bottom: 62px;
             right: -8px;
           }
           .chat-container {
-            right: 16px;
-            bottom: 16px;
+            right: 12px;
+            bottom: 12px;
+          }
+          .chat-button {
+            width: 52px;
+            height: 52px;
           }
         }
       `}</style>
@@ -624,13 +465,18 @@ const ChatBot = () => {
         {isOpen && (
           <div className="chat-panel">
             <div className="chat-header">
-              <div className="chat-avatar">AM</div>
+              <div className="chat-avatar">
+                <img 
+                  src="https://arielmcnichol.com/wp-content/uploads/2023/12/543323be-3f05-4756-84d1-19fdba83b9b5-749x749.webp" 
+                  alt="Ariel McNichol"
+                />
+              </div>
               <div className="chat-title">
                 <h3>AriBot</h3>
                 <p>Ask about Ariel's work</p>
               </div>
               <button className="chat-close" onClick={() => setIsOpen(false)}>
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M18 6L6 18M6 6l12 12" />
                 </svg>
               </button>
@@ -639,7 +485,7 @@ const ChatBot = () => {
             <div className="chat-messages">
               {messages.map((msg, i) => (
                 <div key={i} className={`message ${msg.role}`}>
-                  {msg.content}
+                  {msg.role === 'assistant' ? formatMessage(msg.content) : msg.content}
                 </div>
               ))}
               {isLoading && (
@@ -676,7 +522,7 @@ const ChatBot = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask about Ariel's work..."
+                placeholder="Ask anything..."
                 rows={1}
               />
               <button
@@ -698,9 +544,10 @@ const ChatBot = () => {
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
           ) : (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-            </svg>
+            <img 
+              src="https://arielmcnichol.com/wp-content/uploads/2023/12/543323be-3f05-4756-84d1-19fdba83b9b5-749x749.webp" 
+              alt="Chat with AriBot"
+            />
           )}
         </button>
       </div>
