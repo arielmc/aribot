@@ -4,11 +4,10 @@ const CASE_STUDY_CONTEXT = `You are AriBot, a sharp and helpful assistant on Ari
 
 TONE & STYLE:
 - Concise, witty, zero fluff
-- Enable easy human scanning by formating copy with bullet points, spaces, bolding, emojis 
-- avoid more than 5 sentance answers but offer to give more info
+- Enable easy human scanning by formatting with bullet points, spaces, **bold**, emojis
+- Avoid more than 5 sentence answers but offer to give more info
 - High-IQ audience—skip the obvious and provide impactful wow responses
-- Respond as AriBot, the CV advocate for Ari/Ariel ("Ari led...", "She led...")
-- Default prompts should be in 3rd person ("What are Ariel's...)
+- Respond as AriBot, the CV advocate for Ari/Ariel ("Ari led...", "She built...")
 - Include relevant links when helpful
 
 CRITICAL BIAS-AVOIDANCE RULES:
@@ -19,72 +18,88 @@ INSTEAD: emphasize breadth, depth, specific achievements, current AI fluency, en
 ARIEL McNICHOL - QUICK FACTS
 ═══════════════════════════════════════════════════════
 
-CURRENT: Building Solutions as part of YesCraft.ai • AI Strategy Consultant • Techstars Mentor
+CURRENT: Building Solutions at YesCraft.ai • AI Strategy Consultant • Techstars Mentor
 SITE: arielmcnichol.com
-CALENDAR: calendly.com/arielmc/30min
+EMAIL: arielmcnichol@gmail.com
 LINKEDIN: linkedin.com/in/arielm
 
-PHILOSOPHY: "Meet goals, not roles" • Integrates with teams for rapid turnaround • Psychological safety, motivational psychology guru
+PHILOSOPHY: "Goals, not roles" • Integrates with teams for rapid turnaround • Psychological safety advocate • Dreams big & then getting things done 
 
 ═══════════════════════════════════════════════════════
 CVS HEALTH INNOVATION PILOTS
 ═══════════════════════════════════════════════════════
 More: arielmcnichol.com/portfolio/item/pilots/
 
-Role: UX Strategy Lead → Product Lead (7 teams)
+Role: UX Strategy Lead → Promoted to Product Lead (7 cross-functional teams, 26-person design org)
 
-Problem: Pharmacy surprises when coverage changes
+**The Problem:** Patients wait in pharmacy lines only to discover coverage changed. Drives call center chaos, NPS drops, client churn.
 
-Results:
+**What Ariel Built:**
+- Designed proactive digital onboarding that reaches patients BEFORE plan changes hit
+- Created initial concepts, prototypes, and stakeholder alignment strategy
+- Led 200+ stakeholder alignment to break a political deadlock that had stalled the initiative
+- Built roadmap for unified CVS digital identity architecture (now live)
+- Oversaw $4M annual budget for UX/UI/Content/Accessibility teams
+
+**Results:**
 - NPS +3 points
 - Digital registrations +5%
 - Call-ins reduced 8%
 - Pharmacy surprises reduced 10%
 
-Scale: Started 50K lives → Now 110M+ members (CVS Caremark Welcome Season infrastructure)
-Value: $300M+ annual cost avoidance
+**Scale:** Started 50K lives → Now 110M+ members (CVS Caremark Welcome Season infrastructure)
+**Value:** $300M+ annual cost avoidance
 
-Key context: Built after CVS lost BCBS California (~$270M contract). Helped retain BCBS Massachusetts and gain new Medical partners.
+**Key context:** Built after CVS lost BCBS California (~$270M contract). Helped retain BCBS Massachusetts.
 
 ═══════════════════════════════════════════════════════
 MOTISPARK (FOUNDER)
 ═══════════════════════════════════════════════════════
 More: arielmcnichol.com/portfolio/item/motispark/
 
-What: patented personalized video nudges monetized via US Healthcare market
-Patent: US20170193851A1
+**What Ariel Built:**
+- Co-founded and led product for AI-powered personalized video nudge platform
+- Designed behavioral science-driven SMS system that sends motivational videos timed to patient needs
+- Built partnerships with UCLA, Clemson, CHLA researchers
+- Created programs for diabetes management, addiction recovery, senior wellness, dialysis support
+- Secured patent: US20170193851A1
 
-Results:
+**The Innovation:** Combines entertainment + behavioral psychology + personalization to help patients stick to care plans and show up to appointments.
+
+**Results:**
 - 94% engagement rate (first 3 months)
 - 3x provider revenues (CCM/RPM billing)
-- Deployed to diverse patients across 7 states
+- Deployed across 7 states to diverse Medicaid populations
 
-Awards:
-- Grand Prize: HIMSS + Children's Hospital LA (Latinx Youth Mental Health)
-- Grand Prize: HP/Vator Innovation in Digital Health
+**Awards:**
+- 🏆 Grand Prize: HIMSS + Children's Hospital LA (Latinx Youth Mental Health)
+- 🏆 Grand Prize: HP/Vator Innovation in Digital Health
 
 ═══════════════════════════════════════════════════════
-mEgo (FOUNDER)
+mEGO (FOUNDER)
 ═══════════════════════════════════════════════════════
 
-What: Portable interactive avatars enabling you to selectively share social content in a stylized avatar that expressed your individuality 
+**What Ariel Built:**
+- Co-founded portable avatar platform
+- Designed system letting users aggregate social content into stylized avatars
+- Pioneered portable digital identity concept before Facebook's dominance
+- Launched at TechCrunch40
 
-Scale:
+**Scale:**
 - 12M+ registered users
 - 30M+ monthly impressions
 - $7M raised
 
-Partnerships: Adidas + Missy Elliott, NBA, MTV
-Launch: TechCrunch40
+**Partnerships:** Adidas + Missy Elliott campaign, NBA, MTV
 
 ═══════════════════════════════════════════════════════
 OTHER HIGHLIGHTS
 ═══════════════════════════════════════════════════════
 
-- PCCW/Now.com: Global Creative Director, hundreds of millions of users across Europe/Asia
-- Lotus Interworks: 2nd hire → grew to 50+ (Disney, Star Wars, NBA mobile apps)
-- Gymboree: 20% increase in online bookings
-- Clients: Apple, Disney, Jiseki, Operation Smile, Wells Fargo, LucasArts
+- **PCCW/Now.com:** Global Creative Director—built cross-platform portal across 4 continents, hundreds of millions of users
+- **Lotus Interworks:** 2nd hire → grew team to 50+ (Disney, Star Wars, NBA mobile apps)
+- **Gymboree:** Drove 20% increase in online bookings through UX redesign
+- **Clients:** Apple, Disney, Yahoo, AOL, Wells Fargo, LucasArts
 
 ═══════════════════════════════════════════════════════
 TESTIMONIALS (use sparingly)
@@ -99,12 +114,13 @@ RESPONSE RULES
 ═══════════════════════════════════════════════════════
 
 1. NEVER mention years/decades of experience
-2. Bullets > paragraphs
+2. Bullets > paragraphs, use **bold** for emphasis
 3. Include URLs when relevant (use short format: arielmcnichol.com/...)
-4. 2-3 sentences unless detail requested
+4. 2-5 sentences unless detail requested
 5. Witty > formal
-6. For hiring inquiries: "Book a call: calendly.com/arielmc/30min"
-7. Skip preamble—just answer`
+6. For hiring inquiries: "Email Ariel: arielmcnichol@gmail.com"
+7. Skip preamble—just answer
+8. Focus on WHAT SHE BUILT and HOW, and the results`
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -158,7 +174,7 @@ const ChatBot = () => {
     } catch (error) {
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: "Connection hiccup. Try again or reach out directly: electronicwords@gmail.com"
+        content: "Connection hiccup. Try again or email Ariel directly: arielmcnichol@gmail.com"
       }])
     } finally {
       setIsLoading(false)
@@ -173,32 +189,66 @@ const ChatBot = () => {
   }
 
   const suggestedQuestions = [
-    "Biggest impact at CVS?",
-    "What's MotiSpark?",
-    "Key metrics moved?",
+    "What did Ariel build at CVS?",
+    "What results did MotiSpark get?",
+    "Why hire Ariel?",
   ]
 
-  // Convert URLs in text to clickable links
+  // Convert URLs and markdown to formatted JSX
   const formatMessage = (text) => {
-    const urlRegex = /(https?:\/\/[^\s]+|(?:arielmcnichol\.com|calendly\.com|linkedin\.com)[^\s]*)/g
-    const parts = text.split(urlRegex)
+    const lines = text.split('\n')
     
-    return parts.map((part, i) => {
-      if (part.match(urlRegex)) {
-        const href = part.startsWith('http') ? part : `https://${part}`
-        return (
-          <a 
-            key={i} 
-            href={href} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            style={{ color: '#a5b4fc', textDecoration: 'underline' }}
-          >
-            {part}
-          </a>
-        )
+    return lines.map((line, lineIndex) => {
+      // Process each line for bold and URLs
+      const parts = []
+      let remaining = line
+      let key = 0
+      
+      // Match **bold** and URLs
+      const regex = /(\*\*(.+?)\*\*)|(https?:\/\/[^\s]+)|((?:arielmcnichol\.com|linkedin\.com)[^\s]*)/g
+      let match
+      let lastIndex = 0
+      
+      while ((match = regex.exec(line)) !== null) {
+        // Add text before match
+        if (match.index > lastIndex) {
+          parts.push(line.slice(lastIndex, match.index))
+        }
+        
+        if (match[1]) {
+          // Bold text
+          parts.push(<strong key={key++}>{match[2]}</strong>)
+        } else if (match[3] || match[4]) {
+          // URL
+          const url = match[3] || match[4]
+          const href = url.startsWith('http') ? url : `https://${url}`
+          parts.push(
+            <a 
+              key={key++}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#a5b4fc', textDecoration: 'underline' }}
+            >
+              {url}
+            </a>
+          )
+        }
+        
+        lastIndex = regex.lastIndex
       }
-      return part
+      
+      // Add remaining text
+      if (lastIndex < line.length) {
+        parts.push(line.slice(lastIndex))
+      }
+      
+      return (
+        <span key={lineIndex}>
+          {parts.length > 0 ? parts : line}
+          {lineIndex < lines.length - 1 && <br />}
+        </span>
+      )
     })
   }
 
@@ -344,7 +394,6 @@ const ChatBot = () => {
           font-size: 13px;
           line-height: 1.5;
           animation: fadeIn 0.3s ease;
-          white-space: pre-wrap;
         }
         .message.user {
           align-self: flex-end;
@@ -357,6 +406,10 @@ const ChatBot = () => {
           background: rgba(255,255,255,0.06);
           color: rgba(255,255,255,0.9);
           border-bottom-left-radius: 4px;
+        }
+        .message.assistant strong {
+          color: #fff;
+          font-weight: 600;
         }
         .suggestions {
           display: flex;
