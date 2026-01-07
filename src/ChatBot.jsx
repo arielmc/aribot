@@ -184,6 +184,7 @@ export default function ChatBot() {
           flex: 1;
           min-height: 0;
           overflow-y: auto;
+          overscroll-behavior: contain;
           padding: 16px;
           display: flex;
           flex-direction: column;
