@@ -27,7 +27,7 @@ OTHER: PCCW Global Creative Director, Lotus Interworks (grew 3→50+), Apple, Di
 
 export default function ChatBot() {
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: "Hey! I'm AriBot 👋 Ask me anything about Ariel's work, case studies, or experience." }
+    { role: 'assistant', content: "Hi Human 👋 Ask me anything about Ariel's experience, work psyche, etc." }
   ])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
