@@ -123,9 +123,7 @@ RESPONSE RULES
 8. Focus on WHAT SHE BUILT and HOW, and the results`
 
 const ChatBot = () => {
-  const [isOpen, setIsOpen] = useState(true) => {
-  return new URLSearchParams(window.location.search).get('embed') === 'true'
-})
+  const [isOpen, setIsOpen] = useState(true)
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
