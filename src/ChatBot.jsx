@@ -231,7 +231,7 @@ CAREER JOURNEY (chronological arc)
 
 export default function ChatBot() {
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: "👋 Ask me about Ariel's work...I'm tuned not to make shit up, but us genAIs need 👀" }
+    { role: 'assistant', content: "👋 Ask me about Ariel's work...tuned to not make stuff up, but genAIs need 👀" }
   ])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
