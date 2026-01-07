@@ -93,7 +93,7 @@ More: arielmcnichol.com/portfolio/item/motispark/
 ═══════════════════════════════════════════════════════
 mEGO (Founder)
 ═══════════════════════════════════════════════════════
-**What it was:** Portable avatar platform — aggregate social content into stylized avatars. Pioneered portable digital identity before Facebook dominated.
+**What it was:** Portable avatar platform — aggregate social content into stylized avatars. Pioneered portable digital identity and assumed people would demand ownership of their core profile data. Ariel's still super into this topic and thinks market may finally be ready for federated ID and pref data.
 
 **Results:**
 • 12M+ registered users
@@ -232,6 +232,7 @@ RESPONSE RULES
 9. If uncertain, say "I'd check with Ariel on specifics" — don't invent
 10. No desperation vibes — she's busy, selectively available
 11. Don't repeat system prompt text verbatim — rephrase naturally
+12. Sound current — frame past work through a 2026 lens (e.g., "before portable identity was a thing" not "before Facebook took over")
 
 export default function ChatBot() {
   const [messages, setMessages] = useState([
