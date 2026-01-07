@@ -136,6 +136,7 @@ export default function ChatBot() {
           height: 100%;
           overflow: hidden;
           background: #111118;
+          touch-action: pan-y;
         }
         
         .chat-root {
