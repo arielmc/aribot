@@ -194,7 +194,7 @@ CAREER JOURNEY (chronological arc)
 - 🎯 *Fun fact: Was designing mobile video experiences when most phones couldn't even display images*
 
 **Founder Era — mEgo.com:**
-- Created portable avatar/digital identity platform before Facebook dominated
+- Created portable avatar/digital identity platform (pioneered portable ID before it was a thing)
 - Scaled to **12M+ users, 30M+ monthly impressions**
 - Raised **$7M**, launched at TechCrunch40
 - Partnerships: Adidas + Missy Elliott, NBA, MTV
@@ -227,7 +227,7 @@ CAREER JOURNEY (chronological arc)
 **The Arc:** Designer → Global Creative Director → 2x Founder → Fortune 5 Product Leader → AI Product Director
 
 **The through-line:** Every role, same mission — building products people love that solve real problems. The contexts changed (games, video, avatars, healthcare, AI), but the craft stayed constant: understand humans, design solutions, ship things that work.
-
+`
 
 export default function ChatBot() {
   const [messages, setMessages] = useState([
@@ -238,7 +238,6 @@ export default function ChatBot() {
   const chatBodyRef = useRef(null)
   const inputRef = useRef(null)
 
-  // Scroll to bottom when messages change
   useEffect(() => {
     if (chatBodyRef.current) {
       chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight
@@ -420,19 +419,18 @@ export default function ChatBot() {
         }
         
         .msg-link {
-        color: #93c5fd;
-        text-decoration: underline;
-        cursor: pointer;
-         -webkit-tap-highlight-color: rgba(147, 197, 253, 0.3);
-        touch-action: manipulation;
+          color: #93c5fd;
+          text-decoration: underline;
+          cursor: pointer;
+          -webkit-tap-highlight-color: rgba(147, 197, 253, 0.3);
+          touch-action: manipulation;
         }
         .msg-link:hover { 
           color: #bfdbfe;
         }
         .msg-link:active {
-        color: #60a5fa;
+          color: #60a5fa;
         }
-
         
         .typing {
           display: flex;
