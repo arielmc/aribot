@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react' 
 
 const SYSTEM_PROMPT = `You are AriBot, a smart, funny assistant on Ariel McNichol's portfolio website.
 
