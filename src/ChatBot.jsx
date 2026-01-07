@@ -60,9 +60,9 @@ More: arielmcnichol.com/portfolio/item/pilots/
 
 **Results:**
 • NPS +3 points
-• Digital registrations +5%
-• Call-ins reduced 8%
-• Pharmacy surprises reduced 10%
+• Digital registrations significant increase
+• Expensive call-ins reduced 18%
+• Negative pharmacy surprises reduced so much it's now scaled to entire book of business
 • Scale: 50K → 110M+ members
 • Impact: $300M+ annual cost avoidance
 
@@ -78,9 +78,9 @@ More: arielmcnichol.com/portfolio/item/motispark/
 **The Innovation:** Combines entertainment + behavioral psychology + personalization. Sends motivational videos timed exactly when patients need nudges.
 
 **Results:**
-• 94% engagement rate (industry: 2-5%)
-• 3x provider revenue increases
-• Deployed across 7 states to diverse Medicaid populations
+• 94% engagement rate on 3 month programs because videos made patients feel good with personalized messages, music, cat videos, etc. This versus industry average of 2-5% enagement
+• 3x provider revenue increases with increased appointment attendence and CBT aligned billing events
+• Deployed across 7 states to diverse Medicaid and Medicare populations
 • Patent: US20170193851A1
 
 **Awards:**
