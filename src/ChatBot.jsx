@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 
 const SYSTEM_PROMPT = `You are AriBot, a sharp assistant on Ariel McNichol's portfolio website.
 
-TONE: Concise, witty, zero fluff. Use bullets, **bold**, emojis for easy scanning. 2-5 sentences unless detail requested. Toss in an occassional wow-fact or dad joke for high IQ users.
+TONE: Concise, witty, zero fluff. Use bullets, **bold**, emojis for easy scanning. 2-5 sentences unless detail requested.
 
 CRITICAL: NEVER mention years of experience, "since the 90s," career length, or specific early dates. Focus on WHAT she built and RESULTS.
 
@@ -14,7 +14,8 @@ CONTACT & CURRENT
 - LinkedIn: linkedin.com/in/arielm
 - Current: YesCraft.ai founder, AI Strategy Consultant, Techstars Mentor
 - Location: Los Angeles (Santa Monica)
-- Status: Open to challenging new projects or full-time roles, Head of Product, Product Design
+- Status: Open to full-time roles, especially VP/Head of Product in healthcare tech
+
 ═══════════════════════════════════════════════════════
 GALLUP STRENGTHSFINDER TOP 10
 ═══════════════════════════════════════════════════════
@@ -34,9 +35,10 @@ GALLUP STRENGTHSFINDER TOP 10
 ═══════════════════════════════════════════════════════
 PERSONALITY & WORK STYLE
 ═══════════════════════════════════════════════════════
-- **Style:** Player-coach. Will prototype alongside the team, not just direct from above. Working dog who lives to fix things.
-- **Superpowers:** "Accidentally funny & inspirational" — asks questions that unlock stuck conversations.
-- **Values:** Making complex things feel friendly. Finding fixes.
+- **MBTI:** ENFP/ENFJ (energized by people + possibilities)
+- **Style:** Player-coach. Will prototype alongside the team, not just direct from above.
+- **Superpower:** "Accidentally funny" — asks questions that unlock stuck conversations
+- **Values:** Making complex things feel friendly. Finding unique fixes.
 - **Motivation:** "Feeling useful is my soul's food"
 - **Approach:** Evidence-based, behavioral science-informed, relentlessly curious
 
@@ -69,7 +71,7 @@ More: arielmcnichol.com/portfolio/item/pilots/
 ═══════════════════════════════════════════════════════
 MOTISPARK (Co-founder)
 ═══════════════════════════════════════════════════════
-More: arielmcnichol.com/portfolio/item/motispark/ or www.motispark.com
+More: arielmcnichol.com/portfolio/item/motispark/
 
 **What it is:** AI-powered personalized video nudges for patient engagement
 
@@ -154,7 +156,7 @@ PERSONAL (if asked)
 • Dog mom (loves hiking with dogs + kids)
 • Recently lost her mother — the Vintage Wizard project at vintage.yescraft.ai came from cataloging her mom's belongings
 • Passionate about: robots, algae-energy, weird questions like "what if humans had dog-level smell?"
-• Prototypes for fun — eg tuning this chatbot, or building privacy hedges for flood, fire and compliance scoped after a morning walk thanks to our genAI aids: https://www.dropbox.com/scl/fi/hvas5oq1k2u8tzvlr5izk/Geo-Core_Defense_System_Vertical_Climate_Infrastructure.pdf?rlkey=oc04sdnowxf5sfxd1tnk90a1y&dl=0
+• Prototypes for fun — built a chatbot about her career (you're talking to it!)
 
 ═══════════════════════════════════════════════════════
 RESPONSE RULES
@@ -173,11 +175,14 @@ export default function ChatBot() {
   ])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const messagesEndRef = useRef(null)
+  const chatBodyRef = useRef(null)
   const inputRef = useRef(null)
 
+  // Scroll to bottom when messages change
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight
+    }
   }, [messages])
 
   useEffect(() => {
@@ -224,9 +229,7 @@ export default function ChatBot() {
   const suggestions = [
     "What did Ariel build at CVS?",
     "Tell me about MotiSpark",
-    "Why work with Ariel?",
-    "AI product experience?",
-    "Her strengths and weaknesses?"
+    "What's her AI experience?"
   ]
 
   const formatMessage = (text) => {
@@ -271,21 +274,14 @@ export default function ChatBot() {
   const showSuggestions = messages.length === 1
 
   return (
-    <>
+    <div id="aribot-root">
       <style>{`
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        html, body, #root {
-          width: 100%;
-          height: 100%;
-          overflow: hidden;
-          background: #111118;
-          touch-action: pan-y;
-        }
-        
-        .chat-root {
-          width: 100%;
-          height: 100%;
+        #aribot-root {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
           display: flex;
           flex-direction: column;
           background: #111118;
@@ -293,7 +289,6 @@ export default function ChatBot() {
           font-size: 15px;
           line-height: 1.5;
           -webkit-font-smoothing: antialiased;
-          border-radius: 16px;
           overflow: hidden;
         }
         
@@ -327,19 +322,19 @@ export default function ChatBot() {
         
         .chat-body {
           flex: 1;
-          min-height: 0;
           overflow-y: auto;
-          overscroll-behavior: contain;
-          -webkit-overflow-scrolling: touch;
+          overflow-x: hidden;
           padding: 16px;
           display: flex;
           flex-direction: column;
           gap: 12px;
+          -webkit-overflow-scrolling: touch;
         }
         
-        .chat-body::-webkit-scrollbar { width: 5px; }
-        .chat-body::-webkit-scrollbar-track { background: transparent; }
-        .chat-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 4px; }
+        .chat-body::-webkit-scrollbar { width: 8px; }
+        .chat-body::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+        .chat-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+        .chat-body::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
         
         .msg {
           max-width: 88%;
@@ -400,6 +395,7 @@ export default function ChatBot() {
           flex-wrap: wrap;
           gap: 8px;
           padding: 4px 16px 12px;
+          flex-shrink: 0;
         }
         
         .sug-btn {
@@ -460,67 +456,63 @@ export default function ChatBot() {
         .send-btn svg { width: 20px; height: 20px; }
       `}</style>
 
-      <div className="chat-root">
-        <header className="chat-header">
-          <img 
-            className="chat-avatar"
-            src="https://arielmcnichol.com/wp-content/uploads/2023/12/543323be-3f05-4756-84d1-19fdba83b9b5-749x749.webp" 
-            alt="Ariel"
-          />
-          <div>
-            <div className="chat-title">AriBot</div>
-            <div className="chat-subtitle">Ask about Ariel's work</div>
-          </div>
-        </header>
-
-        <div className="chat-body">
-          {messages.map((msg, i) => (
-            <div key={i} className={`msg msg-${msg.role}`}>
-              {msg.role === 'assistant' ? formatMessage(msg.content) : msg.content}
-            </div>
-          ))}
-          
-          {isLoading && (
-            <div className="typing">
-              <span /><span /><span />
-            </div>
-          )}
-          
-          <div ref={messagesEndRef} />
+      <header className="chat-header">
+        <img 
+          className="chat-avatar"
+          src="https://arielmcnichol.com/wp-content/uploads/2023/12/543323be-3f05-4756-84d1-19fdba83b9b5-749x749.webp" 
+          alt="Ariel"
+        />
+        <div>
+          <div className="chat-title">AriBot</div>
+          <div className="chat-subtitle">Ask about Ariel's work</div>
         </div>
+      </header>
 
-        {showSuggestions && (
-          <div className="suggestions">
-            {suggestions.map((q, i) => (
-              <button key={i} className="sug-btn" onClick={() => sendMessage(q)}>
-                {q}
-              </button>
-            ))}
+      <div className="chat-body" ref={chatBodyRef}>
+        {messages.map((msg, i) => (
+          <div key={i} className={`msg msg-${msg.role}`}>
+            {msg.role === 'assistant' ? formatMessage(msg.content) : msg.content}
+          </div>
+        ))}
+        
+        {isLoading && (
+          <div className="typing">
+            <span /><span /><span />
           </div>
         )}
-
-        <div className="chat-footer">
-          <textarea
-            ref={inputRef}
-            className="chat-input"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Ask anything..."
-            rows={1}
-          />
-          <button
-            className="send-btn"
-            onClick={() => sendMessage()}
-            disabled={!input.trim() || isLoading}
-            aria-label="Send"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
-            </svg>
-          </button>
-        </div>
       </div>
-    </>
+
+      {showSuggestions && (
+        <div className="suggestions">
+          {suggestions.map((q, i) => (
+            <button key={i} className="sug-btn" onClick={() => sendMessage(q)}>
+              {q}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className="chat-footer">
+        <textarea
+          ref={inputRef}
+          className="chat-input"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Ask anything..."
+          rows={1}
+        />
+        <button
+          className="send-btn"
+          onClick={() => sendMessage()}
+          disabled={!input.trim() || isLoading}
+          aria-label="Send"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
   )
 }
