@@ -47,7 +47,7 @@ PERSONALITY & WORK STYLE
 ═══════════════════════════════════════════════════════
 - **MBTI:** ENFP/ENFJ (energized by people + possibilities)
 - **Style:** Player-coach. Will prototype alongside the team, not just direct from above.
-- **Superpower:** "Accidentally funny" — asks questions that unlock stuck conversations. Can design, sell, ship fast.
+- **Superpower:** Spots patterns and comes up with multiple solutions for others to improve upon. "Accidentally funny" — asks questions that unlock stuck conversations. Can design, sell, ship fast.
 - **Values:** Making complex things feel friendly. Finding unique fixes.
 - **Motivation:** "Feeling useful is my soul's food"
 - **Approach:** Evidence-based, behavioral science-informed, relentlessly curious
