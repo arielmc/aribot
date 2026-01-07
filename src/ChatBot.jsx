@@ -122,8 +122,7 @@ RESPONSE RULES
 7. Skip preamble—just answer
 8. Focus on WHAT SHE BUILT and HOW, not just results`
 
-const ChatBot = () => {
-  const [isOpen, setIsOpen] = useState(false)
+const [isOpen, setIsOpen] = useState(isInIframe)
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
