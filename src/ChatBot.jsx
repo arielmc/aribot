@@ -121,10 +121,7 @@ RESPONSE RULES
 6. For hiring inquiries: "Email Ariel: arielmcnichol@gmail.com"
 7. Skip preamble—just answer
 8. Focus on WHAT SHE BUILT and HOW, not just results`
-
 const ChatBot = () => {
-  const isInIframe = window.self !== window.top
-  const [isOpen, setIsOpen] = useState(isInIframe)
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -136,23 +133,16 @@ const ChatBot = () => {
   const messagesEndRef = useRef(null)
   const inputRef = useRef(null)
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   useEffect(() => {
-    scrollToBottom()
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
   useEffect(() => {
-    if (isOpen && inputRef.current) {
-      inputRef.current.focus()
-    }
-  }, [isOpen])
+    inputRef.current?.focus()
+  }, [])
 
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return
-
     const userMessage = input.trim()
     setInput('')
     setMessages(prev => [...prev, { role: 'user', content: userMessage }])
@@ -167,15 +157,13 @@ const ChatBot = () => {
           systemPrompt: CASE_STUDY_CONTEXT
         })
       })
-
-      if (!response.ok) throw new Error('Failed to get response')
-
+      if (!response.ok) throw new Error('Failed')
       const data = await response.json()
       setMessages(prev => [...prev, { role: 'assistant', content: data.response }])
-    } catch (error) {
+    } catch {
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: "Connection hiccup. Try again or email Ariel directly: arielmcnichol@gmail.com"
+        content: "Connection hiccup. Try again or email arielmcnichol@gmail.com"
       }])
     } finally {
       setIsLoading(false)
@@ -197,410 +185,172 @@ const ChatBot = () => {
 
   const formatMessage = (text) => {
     const lines = text.split('\n')
-    return lines.map((line, lineIndex) => {
+    return lines.map((line, i) => {
       const parts = []
       let key = 0
       const regex = /(\*\*(.+?)\*\*)|(https?:\/\/[^\s]+)|((?:arielmcnichol\.com|linkedin\.com)[^\s]*)/g
-      let match
-      let lastIndex = 0
+      let match, lastIndex = 0
       while ((match = regex.exec(line)) !== null) {
-        if (match.index > lastIndex) {
-          parts.push(line.slice(lastIndex, match.index))
-        }
+        if (match.index > lastIndex) parts.push(line.slice(lastIndex, match.index))
         if (match[1]) {
           parts.push(<strong key={key++}>{match[2]}</strong>)
         } else if (match[3] || match[4]) {
           const url = match[3] || match[4]
           const href = url.startsWith('http') ? url : `https://${url}`
-          parts.push(
-            <a key={key++} href={href} target="_blank" rel="noopener noreferrer" style={{ color: '#a5b4fc', textDecoration: 'underline' }}>
-              {url}
-            </a>
-          )
+          parts.push(<a key={key++} href={href} target="_blank" rel="noopener noreferrer" style={{color:'#a5b4fc',textDecoration:'underline'}}>{url}</a>)
         }
         lastIndex = regex.lastIndex
       }
-      if (lastIndex < line.length) {
-        parts.push(line.slice(lastIndex))
-      }
-      return (
-        <span key={lineIndex}>
-          {parts.length > 0 ? parts : line}
-          {lineIndex < lines.length - 1 && <br />}
-        </span>
-      )
+      if (lastIndex < line.length) parts.push(line.slice(lastIndex))
+      return <span key={i}>{parts.length ? parts : line}{i < lines.length - 1 && <br/>}</span>
     })
   }
 
   return (
-    <>
-      <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulse {
-          0%, 100% { opacity: 0.4; }
-          50% { opacity: 1; }
-        }
-        @keyframes slideUp {
-          from { opacity: 0; transform: translateY(20px) scale(0.95); }
-          to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .chat-container {
-          position: fixed;
-          bottom: 20px;
-          right: 20px;
-          z-index: 9999;
-          font-family: 'DM Sans', -apple-system, sans-serif;
-        }
-        .chat-container.in-iframe {
-          bottom: 0;
-          right: 0;
-          width: 100%;
-          height: 100%;
-        }
-        .chat-button {
-          width: 56px;
-          height: 56px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          border: none;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 4px 24px rgba(0,0,0,0.3);
-          transition: all 0.3s ease;
-          padding: 0;
-        }
-        .chat-button:hover {
-          transform: scale(1.05);
-          box-shadow: 0 6px 32px rgba(0,0,0,0.4);
-        }
-        .chat-button svg {
-          width: 28px;
-          height: 28px;
-          color: #fff;
-        }
-        .chat-panel {
-          position: absolute;
-          bottom: 66px;
-          right: 0;
-          width: 340px;
-          max-width: calc(100vw - 40px);
-          height: 480px;
-          max-height: calc(100vh - 100px);
-          background: #0d0d14;
-          border-radius: 16px;
-          border: 1px solid rgba(255,255,255,0.08);
-          box-shadow: 0 8px 48px rgba(0,0,0,0.5);
-          display: flex;
-          flex-direction: column;
-          overflow: hidden;
-          animation: slideUp 0.3s ease;
-        }
-        .chat-panel.in-iframe {
-          position: fixed;
-          bottom: 0;
-          right: 0;
-          width: 100%;
-          height: 100%;
-          max-width: 100%;
-          max-height: 100%;
-          border-radius: 0;
-          border: none;
-          box-shadow: none;
-        }
-        .chat-header {
-          padding: 14px 16px;
-          background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-          border-bottom: 1px solid rgba(255,255,255,0.06);
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-        .chat-avatar {
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          overflow: hidden;
-          flex-shrink: 0;
-        }
-        .chat-avatar img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-        .chat-title {
-          flex: 1;
-          min-width: 0;
-        }
-        .chat-title h3 {
-          margin: 0;
-          font-size: 14px;
-          font-weight: 600;
-          color: #fff;
-          font-family: 'Fraunces', Georgia, serif;
-        }
-        .chat-title p {
-          margin: 2px 0 0;
-          font-size: 11px;
-          color: rgba(255,255,255,0.5);
-        }
-        .chat-close {
-          background: none;
-          border: none;
-          color: rgba(255,255,255,0.5);
-          cursor: pointer;
-          padding: 4px;
-          display: flex;
-          transition: color 0.2s;
-        }
-        .chat-close:hover {
-          color: #fff;
-        }
-        .chat-messages {
-          flex: 1;
-          overflow-y: auto;
-          padding: 12px;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
-        .chat-messages::-webkit-scrollbar {
-          width: 5px;
-        }
-        .chat-messages::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .chat-messages::-webkit-scrollbar-thumb {
-          background: rgba(255,255,255,0.1);
-          border-radius: 3px;
-        }
-        .message {
-          max-width: 88%;
-          padding: 10px 14px;
-          border-radius: 14px;
-          font-size: 13px;
-          line-height: 1.5;
-          animation: fadeIn 0.3s ease;
-        }
-        .message.user {
-          align-self: flex-end;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          color: #fff;
-          border-bottom-right-radius: 4px;
-        }
-        .message.assistant {
-          align-self: flex-start;
-          background: rgba(255,255,255,0.06);
-          color: rgba(255,255,255,0.9);
-          border-bottom-left-radius: 4px;
-        }
-        .message.assistant strong {
-          color: #fff;
-          font-weight: 600;
-        }
-        .suggestions {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 6px;
-          padding: 0 12px 10px;
-        }
-        .suggestion {
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.08);
-          border-radius: 16px;
-          padding: 6px 12px;
-          font-size: 11px;
-          color: rgba(255,255,255,0.7);
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-        .suggestion:hover {
-          background: rgba(255,255,255,0.08);
-          color: #fff;
-          border-color: rgba(255,255,255,0.15);
-        }
-        .chat-input-area {
-          padding: 10px 12px 14px;
-          border-top: 1px solid rgba(255,255,255,0.06);
-          display: flex;
-          gap: 8px;
-          align-items: flex-end;
-        }
-        .chat-input {
-          flex: 1;
-          background: rgba(255,255,255,0.05);
-          border: 1px solid rgba(255,255,255,0.08);
-          border-radius: 12px;
-          padding: 10px 14px;
-          font-size: 13px;
-          color: #fff;
-          resize: none;
-          font-family: inherit;
-          outline: none;
-          transition: border-color 0.2s;
-        }
-        .chat-input::placeholder {
-          color: rgba(255,255,255,0.35);
-        }
-        .chat-input:focus {
-          border-color: rgba(102, 126, 234, 0.5);
-        }
-        .chat-send {
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          border: none;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.2s;
-          flex-shrink: 0;
-        }
-        .chat-send:hover:not(:disabled) {
-          transform: scale(1.05);
-        }
-        .chat-send:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-        .chat-send svg {
-          width: 18px;
-          height: 18px;
-          color: #fff;
-        }
-        .loading-dots {
-          display: flex;
-          gap: 4px;
-          padding: 4px 0;
-        }
-        .loading-dots span {
-          width: 5px;
-          height: 5px;
-          background: rgba(255,255,255,0.5);
-          border-radius: 50%;
-          animation: pulse 1.4s ease-in-out infinite;
-        }
-        .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
-        @media (max-width: 480px) {
-          .chat-panel {
-            width: calc(100vw - 24px);
-            height: calc(100vh - 90px);
-            bottom: 62px;
-            right: -8px;
-          }
-          .chat-container {
-            right: 12px;
-            bottom: 12px;
-          }
-          .chat-button {
-            width: 52px;
-            height: 52px;
-          }
-        }
-      `}</style>
+    <div style={{
+      width: '100%',
+      height: '100%',
+      background: '#0d0d14',
+      display: 'flex',
+      flexDirection: 'column',
+      fontFamily: "'DM Sans', -apple-system, sans-serif"
+    }}>
+      <div style={{
+        padding: '14px 16px',
+        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px'
+      }}>
+        <div style={{
+          width: '36px',
+          height: '36px',
+          borderRadius: '50%',
+          overflow: 'hidden',
+          flexShrink: 0
+        }}>
+          <img 
+            src="https://arielmcnichol.com/wp-content/uploads/2023/12/543323be-3f05-4756-84d1-19fdba83b9b5-749x749.webp" 
+            alt="Ariel"
+            style={{width:'100%',height:'100%',objectFit:'cover'}}
+          />
+        </div>
+        <div>
+          <h3 style={{margin:0,fontSize:'14px',fontWeight:600,color:'#fff'}}>AriBot</h3>
+          <p style={{margin:'2px 0 0',fontSize:'11px',color:'rgba(255,255,255,0.5)'}}>Ask about Ariel's work</p>
+        </div>
+      </div>
 
-      <div className={`chat-container ${isInIframe ? 'in-iframe' : ''}`}>
-        {isOpen && (
-          <div className={`chat-panel ${isInIframe ? 'in-iframe' : ''}`}>
-            <div className="chat-header">
-              <div className="chat-avatar">
-                <img 
-                  src="https://arielmcnichol.com/wp-content/uploads/2023/12/543323be-3f05-4756-84d1-19fdba83b9b5-749x749.webp" 
-                  alt="Ariel McNichol"
-                />
-              </div>
-              <div className="chat-title">
-                <h3>AriBot</h3>
-                <p>Ask about Ariel's work</p>
-              </div>
-              {!isInIframe && (
-                <button className="chat-close" onClick={() => setIsOpen(false)}>
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M18 6L6 18M6 6l12 12" />
-                  </svg>
-                </button>
-              )}
-            </div>
-
-            <div className="chat-messages">
-              {messages.map((msg, i) => (
-                <div key={i} className={`message ${msg.role}`}>
-                  {msg.role === 'assistant' ? formatMessage(msg.content) : msg.content}
-                </div>
-              ))}
-              {isLoading && (
-                <div className="message assistant">
-                  <div className="loading-dots">
-                    <span></span><span></span><span></span>
-                  </div>
-                </div>
-              )}
-              <div ref={messagesEndRef} />
-            </div>
-
-            {messages.length === 1 && (
-              <div className="suggestions">
-                {suggestedQuestions.map((q, i) => (
-                  <button
-                    key={i}
-                    className="suggestion"
-                    onClick={() => {
-                      setInput(q)
-                      setTimeout(() => sendMessage(), 100)
-                    }}
-                  >
-                    {q}
-                  </button>
-                ))}
-              </div>
-            )}
-
-            <div className="chat-input-area">
-              <textarea
-                ref={inputRef}
-                className="chat-input"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Ask anything..."
-                rows={1}
-              />
-              <button
-                className="chat-send"
-                onClick={sendMessage}
-                disabled={!input.trim() || isLoading}
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-                </svg>
-              </button>
-            </div>
+      <div style={{
+        flex: 1,
+        overflowY: 'auto',
+        padding: '12px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '10px'
+      }}>
+        {messages.map((msg, i) => (
+          <div key={i} style={{
+            maxWidth: '88%',
+            padding: '10px 14px',
+            borderRadius: '14px',
+            fontSize: '13px',
+            lineHeight: 1.5,
+            alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
+            background: msg.role === 'user' 
+              ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' 
+              : 'rgba(255,255,255,0.06)',
+            color: msg.role === 'user' ? '#fff' : 'rgba(255,255,255,0.9)'
+          }}>
+            {msg.role === 'assistant' ? formatMessage(msg.content) : msg.content}
+          </div>
+        ))}
+        {isLoading && (
+          <div style={{
+            alignSelf: 'flex-start',
+            background: 'rgba(255,255,255,0.06)',
+            padding: '10px 14px',
+            borderRadius: '14px',
+            display: 'flex',
+            gap: '4px'
+          }}>
+            <span style={{width:5,height:5,background:'rgba(255,255,255,0.5)',borderRadius:'50%',animation:'pulse 1.4s infinite'}}/>
+            <span style={{width:5,height:5,background:'rgba(255,255,255,0.5)',borderRadius:'50%',animation:'pulse 1.4s infinite 0.2s'}}/>
+            <span style={{width:5,height:5,background:'rgba(255,255,255,0.5)',borderRadius:'50%',animation:'pulse 1.4s infinite 0.4s'}}/>
           </div>
         )}
-
-        {!isInIframe && (
-          <button className="chat-button" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M18 6L6 18M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              </svg>
-            )}
-          </button>
-        )}
+        <div ref={messagesEndRef}/>
       </div>
-    </>
+
+      {messages.length === 1 && (
+        <div style={{display:'flex',flexWrap:'wrap',gap:'6px',padding:'0 12px 10px'}}>
+          {suggestedQuestions.map((q, i) => (
+            <button key={i} onClick={() => {setInput(q); setTimeout(sendMessage, 100)}} style={{
+              background: 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: '16px',
+              padding: '6px 12px',
+              fontSize: '11px',
+              color: 'rgba(255,255,255,0.7)',
+              cursor: 'pointer'
+            }}>{q}</button>
+          ))}
+        </div>
+      )}
+
+      <div style={{
+        padding: '10px 12px 14px',
+        borderTop: '1px solid rgba(255,255,255,0.06)',
+        display: 'flex',
+        gap: '8px'
+      }}>
+        <textarea
+          ref={inputRef}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Ask anything..."
+          rows={1}
+          style={{
+            flex: 1,
+            background: 'rgba(255,255,255,0.05)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            borderRadius: '12px',
+            padding: '10px 14px',
+            fontSize: '13px',
+            color: '#fff',
+            resize: 'none',
+            outline: 'none'
+          }}
+        />
+        <button
+          onClick={sendMessage}
+          disabled={!input.trim() || isLoading}
+          style={{
+            width: '40px',
+            height: '40px',
+            borderRadius: '10px',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            border: 'none',
+            cursor: input.trim() && !isLoading ? 'pointer' : 'not-allowed',
+            opacity: input.trim() && !isLoading ? 1 : 0.5,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" strokeWidth="2">
+            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+          </svg>
+        </button>
+      </div>
+
+      <style>{`@keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }`}</style>
+    </div>
   )
 }
+
+export default ChatBot
 
 export default ChatBot
