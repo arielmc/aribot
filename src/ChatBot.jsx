@@ -237,8 +237,8 @@ const ChatBot = () => {
           />
         </div>
         <div>
-          <h3 style={{margin:0,fontSize:'14px',fontWeight:600,color:'#fff'}}>AriBot</h3>
-          <p style={{margin:'2px 0 0',fontSize:'11px',color:'rgba(255,255,255,0.5)'}}>Ask about Ariel's work</p>
+          <h3 style={{margin:0,fontSize:'15px',fontWeight:600,color:'#fff'}}>AriBot</h3>
+          <p style={{margin:'2px 0 0',fontSize:'13px',color:'rgba(255,255,255,0.5)'}}>Ask about Ariel's work</p>
         </div>
       </div>
 
@@ -255,7 +255,7 @@ const ChatBot = () => {
             maxWidth: '88%',
             padding: '10px 14px',
             borderRadius: '14px',
-            fontSize: '13px',
+            fontSize: '14px',
             lineHeight: 1.5,
             alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
             background: msg.role === 'user' 
@@ -291,7 +291,7 @@ const ChatBot = () => {
               border: '1px solid rgba(255,255,255,0.08)',
               borderRadius: '16px',
               padding: '6px 12px',
-              fontSize: '11px',
+              fontSize: '13px',
               color: 'rgba(255,255,255,0.7)',
               cursor: 'pointer'
             }}>{q}</button>
@@ -318,7 +318,7 @@ const ChatBot = () => {
             border: '1px solid rgba(255,255,255,0.08)',
             borderRadius: '12px',
             padding: '10px 14px',
-            fontSize: '13px',
+            fontSize: '14px',
             color: '#fff',
             resize: 'none',
             outline: 'none'
@@ -350,7 +350,5 @@ const ChatBot = () => {
     </div>
   )
 }
-
-export default ChatBot
 
 export default ChatBot
