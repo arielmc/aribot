@@ -123,7 +123,9 @@ RESPONSE RULES
 8. Focus on WHAT SHE BUILT and HOW, and the results`
 
 const ChatBot = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(() => {
+  return new URLSearchParams(window.location.search).get('embed') === 'true'
+})
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -592,18 +594,20 @@ const ChatBot = () => {
           </div>
         )}
 
-        <button className="chat-button" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          ) : (
-            <img 
-              src="https://arielmcnichol.com/wp-content/uploads/2023/12/543323be-3f05-4756-84d1-19fdba83b9b5-749x749.webp" 
-              alt="Chat with AriBot"
-            />
-          )}
-        </button>
+     {!new URLSearchParams(window.location.search).get('embed') && (
+  <button className="chat-button" onClick={() => setIsOpen(!isOpen)}>
+    {isOpen ? (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    ) : (
+      <img 
+        src="https://arielmcnichol.com/wp-content/uploads/2023/12/543323be-3f05-4756-84d1-19fdba83b9b5-749x749.webp" 
+        alt="Chat with AriBot"
+      />
+    )}
+  </button>
+)}
       </div>
     </>
   )
