@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react' 
+import React, { useState, useRef, useEffect } from 'react'
 
 const SYSTEM_PROMPT = `You are AriBot, a smart, funny assistant on Ariel McNichol's portfolio website.
 
@@ -291,36 +291,109 @@ export default function ChatBot() {
     "What's her AI experience?"
   ]
 
+  // Shuffle array helper
+  const shuffle = (arr) => {
+    const shuffled = [...arr]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    return shuffled
+  }
+
+  // Big pool of diverse follow-ups
+  const followUpPool = {
+    cvs: [
+      "How'd she scale to 110M users?",
+      "What was the $300M cost savings?",
+      "Tell me about the political deadlock she broke",
+      "How'd she get promoted so fast?",
+      "What AI work did she do at CVS?"
+    ],
+    motispark: [
+      "How'd she get 94% engagement?",
+      "What's the patent about?",
+      "Which research partners?",
+      "What awards did MotiSpark win?",
+      "How does behavioral nudging work?"
+    ],
+    mego: [
+      "How'd mEgo get 12M users?",
+      "What was the Adidas + Missy Elliott thing?",
+      "Why'd she build portable avatars?",
+      "Is she still into digital identity?",
+    ],
+    ai: [
+      "What's Vintage Wizard?",
+      "Tell me about Geo-Core",
+      "Her Take-Two AI work?",
+      "How does she use AI now?",
+      "What's her AI governance experience?"
+    ],
+    taketwo: [
+      "What'd she do at Take-Two?",
+      "Gaming to healthcare — why?",
+      "What AI frameworks did she build?",
+    ],
+    yescraft: [
+      "What's Vintage Wizard?",
+      "Tell me about Geo-Core",
+      "What client work does she do?",
+      "Why'd she start YesCraft?"
+    ],
+    general: [
+      "What's her superpower?",
+      "Her Gallup strengths?",
+      "What makes her weird (in a good way)?",
+      "Testimonials about her?",
+      "What's she passionate about?",
+      "Her educational background?",
+      "Where has she spoken publicly?",
+      "Does she provide mentorship?",
+      "What would her team say about her?",
+      "Player-coach — what's that mean?",
+      "Her design philosophy?",
+      "Favorite project she's worked on?",
+      "How to contact her?",
+      "Is she looking for work?",
+      "What size teams has she led?",
+      "Fortune 5 experience?",
+      "Any patents?",
+      "PCCW — what's that?",
+      "Her early career?",
+      "Why do people hire her?",
+      "What's she building now?",
+      "Ability to raise money?",
+      "What's her origin story?",
+      "B2B or B2C experience?",
+      "Startup vs enterprise?",
+      "What industries has she worked in?",
+      "Any weird side projects?",
+      "What drives her?"
+    ]
+  }
+
   // Contextual follow-ups based on last assistant message
   const getFollowUpSuggestions = (lastMessage) => {
     const msg = lastMessage.toLowerCase()
+    let pool = []
     
-    if (msg.includes('cvs')) {
-      return ["Tell me about MotiSpark", "What's her AI experience?", "Why hire Ariel?"]
-    }
-    if (msg.includes('motispark') || msg.includes('nudge')) {
-      return ["What did she build at CVS?", "Tell me about mEgo", "What awards has she won?"]
-    }
-    if (msg.includes('mego') || msg.includes('avatar')) {
-      return ["What's MotiSpark?", "Her healthcare experience?", "What's she working on now?"]
-    }
-    if (msg.includes('ai') || msg.includes('llm') || msg.includes('machine learning')) {
-      return ["Tell me about MotiSpark", "Her work at Take-Two?", "What's Vintage Wizard?"]
-    }
-    if (msg.includes('take-two') || msg.includes('gaming')) {
-      return ["Her healthcare background?", "What's YesCraft.ai?", "Why hire Ariel?"]
-    }
-    if (msg.includes('yescraft') || msg.includes('vintage wizard') || msg.includes('geo-core')) {
-      return ["What did she build at CVS?", "Tell me about MotiSpark", "Her Gallup strengths?"]
-    }
-    if (msg.includes('hire') || msg.includes('strength') || msg.includes('why ariel')) {
-      return ["Her biggest wins?", "What's she working on now?", "How to contact her?"]
-    }
-    if (msg.includes('contact') || msg.includes('email') || msg.includes('linkedin')) {
-      return ["What did she build at CVS?", "Tell me about MotiSpark", "Her AI experience?"]
-    }
-    // Default follow-ups
-    return ["Her biggest achievements?", "What's she working on now?", "Why hire Ariel?"]
+    // Add contextual questions based on topic
+    if (msg.includes('cvs')) pool.push(...followUpPool.cvs)
+    if (msg.includes('motispark') || msg.includes('nudge') || msg.includes('engagement')) pool.push(...followUpPool.motispark)
+    if (msg.includes('mego') || msg.includes('avatar')) pool.push(...followUpPool.mego)
+    if (msg.includes('ai') || msg.includes('llm') || msg.includes('machine learning') || msg.includes('genai')) pool.push(...followUpPool.ai)
+    if (msg.includes('take-two') || msg.includes('gaming') || msg.includes('zynga') || msg.includes('rockstar')) pool.push(...followUpPool.taketwo)
+    if (msg.includes('yescraft') || msg.includes('vintage') || msg.includes('geo-core')) pool.push(...followUpPool.yescraft)
+    
+    // Always mix in some general questions for variety
+    pool.push(...shuffle(followUpPool.general).slice(0, 4))
+    
+    // If no specific context matched, use more general
+    if (pool.length < 6) pool = [...followUpPool.general]
+    
+    // Shuffle and return 3
+    return shuffle(pool).slice(0, 3)
   }
 
   const formatMessage = (text) => {
