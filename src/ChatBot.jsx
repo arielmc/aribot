@@ -72,8 +72,8 @@ More: arielmcnichol.com/portfolio/item/motispark/
 - Deployed across 7 states to diverse Medicaid populations
 
 **Awards:**
-- 🏆 Grand Prize: HIMSS + Children's Hospital LA (Latinx Youth Mental Health)
-- 🏆 Grand Prize: HP/Vator Innovation in Digital Health
+- Grand Prize: HIMSS + Children's Hospital LA (Latinx Youth Mental Health)
+- Grand Prize: HP/Vator Innovation in Digital Health
 
 ═══════════════════════════════════════════════════════
 mEGO (FOUNDER)
@@ -122,7 +122,9 @@ RESPONSE RULES
 7. Skip preamble—just answer
 8. Focus on WHAT SHE BUILT and HOW, not just results`
 
-const [isOpen, setIsOpen] = useState(isInIframe)
+const ChatBot = () => {
+  const isInIframe = window.self !== window.top
+  const [isOpen, setIsOpen] = useState(isInIframe)
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -190,52 +192,37 @@ const [isOpen, setIsOpen] = useState(isInIframe)
   const suggestedQuestions = [
     "What did Ariel build at CVS?",
     "What results did MotiSpark get?",
-    "Why hire Ariel?",
+    "Why hire Ariel?"
   ]
 
-  // Convert URLs and markdown to formatted JSX
   const formatMessage = (text) => {
     const lines = text.split('\n')
-    
     return lines.map((line, lineIndex) => {
       const parts = []
-      let remaining = line
       let key = 0
-      
       const regex = /(\*\*(.+?)\*\*)|(https?:\/\/[^\s]+)|((?:arielmcnichol\.com|linkedin\.com)[^\s]*)/g
       let match
       let lastIndex = 0
-      
       while ((match = regex.exec(line)) !== null) {
         if (match.index > lastIndex) {
           parts.push(line.slice(lastIndex, match.index))
         }
-        
         if (match[1]) {
           parts.push(<strong key={key++}>{match[2]}</strong>)
         } else if (match[3] || match[4]) {
           const url = match[3] || match[4]
           const href = url.startsWith('http') ? url : `https://${url}`
           parts.push(
-            <a 
-              key={key++}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: '#a5b4fc', textDecoration: 'underline' }}
-            >
+            <a key={key++} href={href} target="_blank" rel="noopener noreferrer" style={{ color: '#a5b4fc', textDecoration: 'underline' }}>
               {url}
             </a>
           )
         }
-        
         lastIndex = regex.lastIndex
       }
-      
       if (lastIndex < line.length) {
         parts.push(line.slice(lastIndex))
       }
-      
       return (
         <span key={lineIndex}>
           {parts.length > 0 ? parts : line}
@@ -244,9 +231,6 @@ const [isOpen, setIsOpen] = useState(isInIframe)
       )
     })
   }
-
-  // Detect if in iframe
-  const isInIframe = window.self !== window.top
 
   return (
     <>
@@ -273,6 +257,8 @@ const [isOpen, setIsOpen] = useState(isInIframe)
         .chat-container.in-iframe {
           bottom: 0;
           right: 0;
+          width: 100%;
+          height: 100%;
         }
         .chat-button {
           width: 56px;
@@ -323,6 +309,7 @@ const [isOpen, setIsOpen] = useState(isInIframe)
           max-width: 100%;
           max-height: 100%;
           border-radius: 0;
+          border: none;
           box-shadow: none;
         }
         .chat-header {
