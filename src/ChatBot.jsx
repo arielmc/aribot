@@ -23,7 +23,7 @@ SITE: arielmcnichol.com
 EMAIL: arielmcnichol@gmail.com
 LINKEDIN: linkedin.com/in/arielm
 
-PHILOSOPHY: "Goals, not roles" • Integrates with teams for rapid turnaround • Psychological safety advocate • Dreams big & then getting things done 
+PHILOSOPHY: "Goals, not roles" • Integrates with teams for rapid turnaround • Psychological safety advocate
 
 ═══════════════════════════════════════════════════════
 CVS HEALTH INNOVATION PILOTS
@@ -58,7 +58,7 @@ MOTISPARK (FOUNDER)
 More: arielmcnichol.com/portfolio/item/motispark/
 
 **What Ariel Built:**
-- Co-founded and led product for AI-powered personalized video nudge platform
+- Co-founded (with Kyle Brinkman) and led product for AI-powered personalized video nudge platform
 - Designed behavioral science-driven SMS system that sends motivational videos timed to patient needs
 - Built partnerships with UCLA, Clemson, CHLA researchers
 - Created programs for diabetes management, addiction recovery, senior wellness, dialysis support
@@ -120,10 +120,10 @@ RESPONSE RULES
 5. Witty > formal
 6. For hiring inquiries: "Email Ariel: arielmcnichol@gmail.com"
 7. Skip preamble—just answer
-8. Focus on WHAT SHE BUILT and HOW, and the results`
+8. Focus on WHAT SHE BUILT and HOW, not just results`
 
 const ChatBot = () => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -199,27 +199,22 @@ const ChatBot = () => {
     const lines = text.split('\n')
     
     return lines.map((line, lineIndex) => {
-      // Process each line for bold and URLs
       const parts = []
       let remaining = line
       let key = 0
       
-      // Match **bold** and URLs
       const regex = /(\*\*(.+?)\*\*)|(https?:\/\/[^\s]+)|((?:arielmcnichol\.com|linkedin\.com)[^\s]*)/g
       let match
       let lastIndex = 0
       
       while ((match = regex.exec(line)) !== null) {
-        // Add text before match
         if (match.index > lastIndex) {
           parts.push(line.slice(lastIndex, match.index))
         }
         
         if (match[1]) {
-          // Bold text
           parts.push(<strong key={key++}>{match[2]}</strong>)
         } else if (match[3] || match[4]) {
-          // URL
           const url = match[3] || match[4]
           const href = url.startsWith('http') ? url : `https://${url}`
           parts.push(
@@ -238,7 +233,6 @@ const ChatBot = () => {
         lastIndex = regex.lastIndex
       }
       
-      // Add remaining text
       if (lastIndex < line.length) {
         parts.push(line.slice(lastIndex))
       }
@@ -251,6 +245,9 @@ const ChatBot = () => {
       )
     })
   }
+
+  // Detect if in iframe
+  const isInIframe = window.self !== window.top
 
   return (
     <>
@@ -274,12 +271,16 @@ const ChatBot = () => {
           z-index: 9999;
           font-family: 'DM Sans', -apple-system, sans-serif;
         }
+        .chat-container.in-iframe {
+          bottom: 0;
+          right: 0;
+        }
         .chat-button {
           width: 56px;
           height: 56px;
           border-radius: 50%;
-          background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-          border: 2px solid rgba(255,255,255,0.1);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          border: none;
           cursor: pointer;
           display: flex;
           align-items: center;
@@ -287,22 +288,15 @@ const ChatBot = () => {
           box-shadow: 0 4px 24px rgba(0,0,0,0.3);
           transition: all 0.3s ease;
           padding: 0;
-          overflow: hidden;
         }
         .chat-button:hover {
           transform: scale(1.05);
           box-shadow: 0 6px 32px rgba(0,0,0,0.4);
-          border-color: rgba(255,255,255,0.2);
         }
         .chat-button svg {
-          width: 26px;
-          height: 26px;
+          width: 28px;
+          height: 28px;
           color: #fff;
-        }
-        .chat-button img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
         }
         .chat-panel {
           position: absolute;
@@ -320,6 +314,17 @@ const ChatBot = () => {
           flex-direction: column;
           overflow: hidden;
           animation: slideUp 0.3s ease;
+        }
+        .chat-panel.in-iframe {
+          position: fixed;
+          bottom: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
+          max-width: 100%;
+          max-height: 100%;
+          border-radius: 0;
+          box-shadow: none;
         }
         .chat-header {
           padding: 14px 16px;
@@ -515,9 +520,9 @@ const ChatBot = () => {
         }
       `}</style>
 
-      <div className="chat-container">
+      <div className={`chat-container ${isInIframe ? 'in-iframe' : ''}`}>
         {isOpen && (
-          <div className="chat-panel">
+          <div className={`chat-panel ${isInIframe ? 'in-iframe' : ''}`}>
             <div className="chat-header">
               <div className="chat-avatar">
                 <img 
@@ -529,11 +534,13 @@ const ChatBot = () => {
                 <h3>AriBot</h3>
                 <p>Ask about Ariel's work</p>
               </div>
-              <button className="chat-close" onClick={() => setIsOpen(false)}>
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M18 6L6 18M6 6l12 12" />
-                </svg>
-              </button>
+              {!isInIframe && (
+                <button className="chat-close" onClick={() => setIsOpen(false)}>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
             </div>
 
             <div className="chat-messages">
@@ -592,20 +599,19 @@ const ChatBot = () => {
           </div>
         )}
 
-     {!new URLSearchParams(window.location.search).get('embed') && (
-  <button className="chat-button" onClick={() => setIsOpen(!isOpen)}>
-    {isOpen ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M18 6L6 18M6 6l12 12" />
-      </svg>
-    ) : (
-      <img 
-        src="https://arielmcnichol.com/wp-content/uploads/2023/12/543323be-3f05-4756-84d1-19fdba83b9b5-749x749.webp" 
-        alt="Chat with AriBot"
-      />
-    )}
-  </button>
-)}
+        {!isInIframe && (
+          <button className="chat-button" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+            )}
+          </button>
+        )}
       </div>
     </>
   )
