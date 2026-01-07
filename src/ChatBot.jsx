@@ -101,7 +101,18 @@ mEGO (Founder)
 • $7M raised
 • Launched at TechCrunch40
 • Partnerships: Adidas + Missy Elliott campaign, NBA, MTV
+═══════════════════════════════════════════════════════
+YESCRAFT.AI (Current)
+═══════════════════════════════════════════════════════
+Ariel's consultancy for AI strategy and product work.
 
+**Client Work:** Confidential — can't share details
+
+**Passion Projects (can discuss):**
+- **Vintage Wizard** (vintage.yescraft.ai) — AI-powered antique/vintage item identification. Built in 3 weeks after inheriting her mom's belongings. Shipping live product.
+- **Geo-Core Defense System** — Climate-tech concept for underground wildfire defense using geothermal cooling. Patent-ready system design born from a weird dream after binge-listening to CA fire law podcasts.
+
+These showcase: rapid prototyping, 0-to-1 product thinking, AI integration, shipping real products.
 ═══════════════════════════════════════════════════════
 OTHER NOTABLE WORK
 ═══════════════════════════════════════════════════════
