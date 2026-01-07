@@ -420,10 +420,19 @@ export default function ChatBot() {
         }
         
         .msg-link {
-          color: #93c5fd;
-          text-decoration: none;
+        color: #93c5fd;
+        text-decoration: underline;
+        cursor: pointer;
+         -webkit-tap-highlight-color: rgba(147, 197, 253, 0.3);
+        touch-action: manipulation;
         }
-        .msg-link:hover { text-decoration: underline; }
+        .msg-link:hover { 
+          color: #bfdbfe;
+        }
+        .msg-link:active {
+        color: #60a5fa;
+        }
+
         
         .typing {
           display: flex;
