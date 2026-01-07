@@ -285,11 +285,43 @@ export default function ChatBot() {
     }
   }
 
-  const suggestions = [
+  const initialSuggestions = [
     "What did Ariel build at CVS?",
     "Tell me about MotiSpark",
     "What's her AI experience?"
   ]
+
+  // Contextual follow-ups based on last assistant message
+  const getFollowUpSuggestions = (lastMessage) => {
+    const msg = lastMessage.toLowerCase()
+    
+    if (msg.includes('cvs')) {
+      return ["Tell me about MotiSpark", "What's her AI experience?", "Why hire Ariel?"]
+    }
+    if (msg.includes('motispark') || msg.includes('nudge')) {
+      return ["What did she build at CVS?", "Tell me about mEgo", "What awards has she won?"]
+    }
+    if (msg.includes('mego') || msg.includes('avatar')) {
+      return ["What's MotiSpark?", "Her healthcare experience?", "What's she working on now?"]
+    }
+    if (msg.includes('ai') || msg.includes('llm') || msg.includes('machine learning')) {
+      return ["Tell me about MotiSpark", "Her work at Take-Two?", "What's Vintage Wizard?"]
+    }
+    if (msg.includes('take-two') || msg.includes('gaming')) {
+      return ["Her healthcare background?", "What's YesCraft.ai?", "Why hire Ariel?"]
+    }
+    if (msg.includes('yescraft') || msg.includes('vintage wizard') || msg.includes('geo-core')) {
+      return ["What did she build at CVS?", "Tell me about MotiSpark", "Her Gallup strengths?"]
+    }
+    if (msg.includes('hire') || msg.includes('strength') || msg.includes('why ariel')) {
+      return ["Her biggest wins?", "What's she working on now?", "How to contact her?"]
+    }
+    if (msg.includes('contact') || msg.includes('email') || msg.includes('linkedin')) {
+      return ["What did she build at CVS?", "Tell me about MotiSpark", "Her AI experience?"]
+    }
+    // Default follow-ups
+    return ["Her biggest achievements?", "What's she working on now?", "Why hire Ariel?"]
+  }
 
   const formatMessage = (text) => {
     return text.split('\n').map((line, i, arr) => {
@@ -331,6 +363,10 @@ export default function ChatBot() {
   }
 
   const showSuggestions = messages.length === 1
+  const lastAssistantMsg = messages.filter(m => m.role === 'assistant').pop()
+  const currentSuggestions = showSuggestions 
+    ? initialSuggestions 
+    : (lastAssistantMsg ? getFollowUpSuggestions(lastAssistantMsg.content) : [])
 
   return (
     <div id="aribot-root">
@@ -549,9 +585,9 @@ export default function ChatBot() {
         )}
       </div>
 
-      {showSuggestions && (
+      {!isLoading && currentSuggestions.length > 0 && (
         <div className="suggestions">
-          {suggestions.map((q, i) => (
+          {currentSuggestions.map((q, i) => (
             <button key={i} className="sug-btn" onClick={() => sendMessage(q)}>
               {q}
             </button>
