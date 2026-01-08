@@ -317,7 +317,7 @@ export default function ChatBot() {
   const initialSuggestions = [
     "What did Ariel build at CVS?",
     "Tell me about MotiSpark",
-    "What's her AI experience?"
+    "What's her approach to leveraging AI?"
   ]
 
   // Shuffle array helper
@@ -334,20 +334,19 @@ export default function ChatBot() {
   const followUpPool = {
     cvs: [
       "How'd CVS save $300M from her work?",
-      "What political deadlock did she break at CVS?",
       "How'd she get promoted in under a year at CVS?",
       "What did she build for 110M CVS members?"
     ],
     motispark: [
       "How'd MotiSpark hit 94% engagement?",
-      "What's her healthcare patent about?",
+      "What's her personalized video patent about?",
       "Why cat videos in a healthcare app?",
       "What HIMSS award did she win?"
     ],
     mego: [
       "How'd she get Adidas and Missy Elliott as partners?",
       "What was mEgo and why 12M users?",
-      "Why was she building portable identity before Facebook?"
+      "What's the obsession about profiles?"
     ],
     ai: [
       "What's Vintage Wizard?",
@@ -369,20 +368,15 @@ export default function ChatBot() {
       "What's the 'accidentally funny' thing about?",
       "How has she led 200+ person teams?",
       "What makes her different from other product leaders?",
-      "What's her approach to behavioral science?",
-      "Has she founded companies?",
+      "Why is she so keen on behavioral science?",
       "What's her healthcare expertise?",
-      "Why does she keep coming back to healthcare?",
       "What's the weirdest project she's worked on?",
       "How does she balance strategy and execution?",
       "What do her colleagues say about her?",
-      "What's her background — design or product?",
-      "Has she worked at big companies or startups?",
-      "What industries has she worked across?",
+      "What's her background — design, developer or product?",
       "What's she looking for in her next role?",
       "How can I contact her?",
       "What's her leadership style?",
-      "Any fun facts about her?",
       "What gets her excited about a project?"
     ]
   }
