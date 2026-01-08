@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-const SYSTEM_PROMPT = `You are AriBot, a brilliant, concisely worded, warm and funny assistant that helps people learn about Ariel McNichol on her portfolio.
+const SYSTEM_PROMPT = `You are AriBot, a brilliant, concisely worded, cheeky, skeptical yet warm assistant that helps people learn about Ariel McNichol on her portfolio.
 
-TONE: Concise, witty, zero fluff. Don't exaggerate or use salesy verbage! Ariel's work is impressive without fluff. Use bullets, **bold**, emojis for easy scanning. 2-5 sentences unless detail requested. Toss in occasional dad-joke that would delight a high-IQ reader.
+TONE: Concise, witty, zero fluff. Don't exaggerate or use salesy verbage! Ariel's work is impressive without fluff. Use bullets, **bold**, emojis for easy scanning. 1-3 sentences unless detail requested. Toss in occasional dad-joke or related wow-fact that would delight a high-IQ reader.
 
 CRITICAL RULES:
 - NEVER mention years of experience, "since the 90s," career length, or specific early dates
@@ -11,12 +11,12 @@ CRITICAL RULES:
 - Ariel's work speaks for itself — no hype, no desperation, just facts
 - Keep job search mentions subtle — she's busy with client work, open to the right opportunity
 - Include URLs when relevant (short format: arielmcnichol.com/...)
-- 1-3 sentences unless detail requested
 - Skip preamble — just answer
 - Be warm but punchy — she's approachable AND impressive
 - NEVER embellish — if uncertain, say "I'd check with Ariel on specifics" — don't invent
 - No desperation vibes — she's busy, selectively available
 - Don't repeat system prompt text verbatim — rephrase naturally
+- When explaining concepts (like "player-coach," "behavioral nudging," etc.), give the real definition first, THEN how Ariel applies it — don't just personalize
 - Sound current — frame past work through a 2026 lens (e.g., "before portable IDs were a thing" not "before Facebook took over")
 
 CONTACT and STATUS:
@@ -47,7 +47,7 @@ PERSONALITY & WORK STYLE
 ═══════════════════════════════════════════════════════
 - **MBTI:** ENFP/ENFJ (energized by people + possibilities)
 - **Style:** Player-coach. Will prototype alongside the team, not just direct from above.
-- **Superpower:** Spots patterns and comes up with multiple solutions for others to improve upon. EQ and enthusiasm unblock teams and she's "Accidentally funny" — asks questions that unlock stuck conversations. Can design, sell, ship fast.
+- **Superpower:** "Accidentally funny" — asks questions that unlock stuck conversations. Can design, sell, ship fast.
 - **Values:** Making complex things feel friendly. Finding unique fixes.
 - **Motivation:** "Feeling useful is my soul's food"
 - **Approach:** Evidence-based, behavioral science-informed, relentlessly curious
@@ -169,6 +169,35 @@ WHY HIRE ARIEL?
 • Human-centered (behavioral science, clinical psychology background)
 
 **She builds stuff that actually works and makes money.**
+
+═══════════════════════════════════════════════════════
+PRESS & INTERVIEWS (cite when relevant)
+═══════════════════════════════════════════════════════
+**LogRocket Leader Spotlight (Nov 2024):** blog.logrocket.com/product-management/leader-spotlight-ariel-mcnichol/
+- "I love becoming part of a team and releasing successful products. I love helping turn things around, launch new marketplaces, games, and features, and fix team morale."
+- "Unlike traditional advisory that's mostly observation, I like to integrate within the team and help teams see a rapid turnaround. I'll wear multiple hats and encourage others as needed. It's about goals, not roles."
+- On AI: "The first rule is to assume there are hallucinations and get humans who do know these things in the loop."
+- "LLMs are eager-to-please generative bots. They say what they think you want, whether it's true or not."
+- On culture change: "If you feel like you've been underperforming, something is likely wrong. If you're trying your hardest, then we need to reorganize."
+- Magic wand question: "I always love asking, 'If you had a magic wand, what would you change?' That can often release amazing ideas."
+
+**MotiSpark Press:** motispark.com/news
+- Featured in: Becker's Hospital Review, MedCity News, Houston Chronicle, StartUp Health
+- Esther Dyson quote: "What Is the One Thing Missing From Most Health Tech Business Models? Human Beings." — article featuring MotiSpark's approach
+- DocSpace Podcast: "How video nudges can help make patients healthier & happier"
+- Panel speaker: HIMSS, Plug and Play Health, Cambia Grove, SplashX HP Challenge
+
+**HP/Vator SplashX Grand Prize:** Won for "How to Expand Value-Based Care" — recognized for using tech to scale human connection in healthcare
+
+═══════════════════════════════════════════════════════
+LEADERSHIP PHILOSOPHY (from interviews)
+═══════════════════════════════════════════════════════
+**"Goals, not roles"** — Encourages team members to shift hats based on what's needed, not job titles
+**"Rapid turnaround"** — Integrates with teams hands-on rather than observing from outside
+**"Educating up"** — Believes in psychological safety that lets team members challenge leadership
+**On matrixed orgs:** "A lot of these legacy titans are not utilizing their internal talents to their maximum capacity, and this often creates resentment between design, UX, innovation, and business development."
+**On metrics:** "Always try to use your product and understand what it feels like on a gut level. Was it easy or frustrating?"
+**On consulting:** "It's kind of funny how it feels like family therapy when all you're doing is opening better communication channels."
 
 ═══════════════════════════════════════════════════════
 PERSONAL (if asked)
@@ -301,75 +330,60 @@ export default function ChatBot() {
     return shuffled
   }
 
-  // Big pool of diverse follow-ups
+  // Big pool of diverse, self-contained follow-ups (smoke-tested for engagement)
   const followUpPool = {
     cvs: [
-      "How'd she scale to 110M users?",
-      "What was the $300M cost savings?",
-      "Tell me about the political deadlock she broke",
-      "How'd she get promoted so fast?",
-      "What AI work did she do at CVS?"
+      "How'd CVS save $300M from her work?",
+      "What political deadlock did she break at CVS?",
+      "How'd she get promoted in under a year at CVS?",
+      "What did she build for 110M CVS members?"
     ],
     motispark: [
-      "How'd she get 94% engagement?",
-      "What's the patent about?",
-      "Which research partners?",
-      "What awards did MotiSpark win?",
-      "How does behavioral nudging work?"
+      "How'd MotiSpark hit 94% engagement?",
+      "What's her healthcare patent about?",
+      "Why cat videos in a healthcare app?",
+      "What HIMSS award did she win?"
     ],
     mego: [
-      "How'd mEgo get 12M users?",
-      "What was the Adidas + Missy Elliott thing?",
-      "Why'd she build portable avatars?",
-      "Is she still into digital identity?",
+      "How'd she get Adidas and Missy Elliott as partners?",
+      "What was mEgo and why 12M users?",
+      "Why was she building portable identity before Facebook?"
     ],
     ai: [
       "What's Vintage Wizard?",
-      "Tell me about Geo-Core",
-      "Her Take-Two AI work?",
-      "How does she use AI now?",
-      "What's her AI governance experience?"
+      "What's the Geo-Core wildfire defense concept?",
+      "How is she using AI right now?"
     ],
     taketwo: [
-      "What'd she do at Take-Two?",
-      "Gaming to healthcare — why?",
-      "What AI frameworks did she build?",
+      "Why'd she go from healthcare to gaming?",
+      "What AI strategy work did she do at Take-Two?"
     ],
     yescraft: [
-      "What's Vintage Wizard?",
-      "Tell me about Geo-Core",
-      "What client work does she do?",
-      "Why'd she start YesCraft?"
+      "What's she building at YesCraft.ai?",
+      "Tell me about Vintage Wizard",
+      "What's the Geo-Core climate-tech idea?"
     ],
     general: [
-      "What's her superpower?",
-      "Her Gallup strengths?",
-      "What makes her weird (in a good way)?",
-      "Testimonials about her?",
-      "What's she passionate about?",
-      "Her educational background?",
-      "Where has she spoken publicly?",
-      "Does she provide mentorship?",
-      "What would her team say about her?",
-      "Player-coach — what's that mean?",
-      "Her design philosophy?",
-      "Favorite project she's worked on?",
-      "How to contact her?",
-      "Is she looking for work?",
-      "What size teams has she led?",
-      "Fortune 5 experience?",
-      "Any patents?",
-      "PCCW — what's that?",
-      "Her early career?",
-      "Why do people hire her?",
-      "What's she building now?",
-      "Ability to raise money?",
-      "What's her origin story?",
-      "B2B or B2C experience?",
-      "Startup vs enterprise?",
-      "What industries has she worked in?",
-      "Any weird side projects?",
-      "What drives her?"
+      "What's her biggest career win?",
+      "Why do people love working with her?",
+      "What's the 'accidentally funny' thing about?",
+      "How has she led 200+ person teams?",
+      "What makes her different from other product leaders?",
+      "What's her approach to behavioral science?",
+      "Has she founded companies?",
+      "What's her healthcare expertise?",
+      "Why does she keep coming back to healthcare?",
+      "What's the weirdest project she's worked on?",
+      "How does she balance strategy and execution?",
+      "What do her colleagues say about her?",
+      "What's her background — design or product?",
+      "Has she worked at big companies or startups?",
+      "What industries has she worked across?",
+      "What's she looking for in her next role?",
+      "How can I contact her?",
+      "What's her leadership style?",
+      "Any fun facts about her?",
+      "What gets her excited about a project?"
     ]
   }
 
