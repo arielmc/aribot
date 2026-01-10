@@ -264,18 +264,49 @@ export default function ChatBot() {
   ])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [loadingMsgIndex, setLoadingMsgIndex] = useState(0)
   const chatBodyRef = useRef(null)
   const inputRef = useRef(null)
+  const loadingIntervalRef = useRef(null)
+
+  const loadingMessages = [
+    "thinking...",
+    "she tuned me a lot...",
+    "cross-referencing facts...",
+    "trying not to hallucinate...",
+    "almost there...",
+    "worth the wait, promise..."
+  ]
 
   useEffect(() => {
     if (chatBodyRef.current) {
       chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight
     }
-  }, [messages])
+  }, [messages, loadingMsgIndex])
 
   useEffect(() => {
     inputRef.current?.focus()
   }, [])
+
+  // Rotate loading messages while isLoading is true
+  useEffect(() => {
+    if (isLoading) {
+      setLoadingMsgIndex(0)
+      loadingIntervalRef.current = setInterval(() => {
+        setLoadingMsgIndex(prev => (prev + 1) % loadingMessages.length)
+      }, 2000)
+    } else {
+      if (loadingIntervalRef.current) {
+        clearInterval(loadingIntervalRef.current)
+        loadingIntervalRef.current = null
+      }
+    }
+    return () => {
+      if (loadingIntervalRef.current) {
+        clearInterval(loadingIntervalRef.current)
+      }
+    }
+  }, [isLoading])
 
   const sendMessage = async (text) => {
     const messageText = text || input.trim()
@@ -551,7 +582,8 @@ export default function ChatBot() {
         
         .typing {
           display: flex;
-          gap: 4px;
+          align-items: center;
+          gap: 8px;
           padding: 12px 14px;
           background: rgba(255,255,255,0.08);
           border-radius: 16px;
@@ -559,19 +591,38 @@ export default function ChatBot() {
           align-self: flex-start;
         }
         
-        .typing span {
+        .typing-dots {
+          display: flex;
+          gap: 4px;
+        }
+        
+        .typing-dots span {
           width: 6px;
           height: 6px;
           background: rgba(255,255,255,0.5);
           border-radius: 50%;
           animation: bounce 1.4s infinite ease-in-out;
         }
-        .typing span:nth-child(2) { animation-delay: 0.16s; }
-        .typing span:nth-child(3) { animation-delay: 0.32s; }
+        .typing-dots span:nth-child(2) { animation-delay: 0.16s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.32s; }
+        
+        .typing-text {
+          color: rgba(255,255,255,0.6);
+          font-size: 13px;
+          font-style: italic;
+          animation: fadeInOut 2s ease-in-out;
+        }
         
         @keyframes bounce {
           0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
           40% { transform: scale(1.1); opacity: 1; }
+        }
+        
+        @keyframes fadeInOut {
+          0% { opacity: 0; transform: translateY(4px); }
+          15% { opacity: 1; transform: translateY(0); }
+          85% { opacity: 1; transform: translateY(0); }
+          100% { opacity: 0; transform: translateY(-4px); }
         }
         
         .suggestions {
@@ -661,7 +712,12 @@ export default function ChatBot() {
         
         {isLoading && (
           <div className="typing">
-            <span /><span /><span />
+            <div className="typing-dots">
+              <span /><span /><span />
+            </div>
+            <span className="typing-text" key={loadingMsgIndex}>
+              {loadingMessages[loadingMsgIndex]}
+            </span>
           </div>
         )}
       </div>
