@@ -31,13 +31,13 @@ OPEN TO: Product/Design/Innovation leadership, or hard problems needing someone 
 STRENGTHS (Gallup Top 5): Strategic, Futuristic, Individualization, Arranger, Achiever
 STYLE: Player-coach, ENFP. "Accidentally funny" — unlocks stuck conversations. Evidence-based, behavioral science-informed.
 
-CVS HEALTH [arielmcnichol.com/portfolio/item/pilots/]
+CVS HEALTH
 Role: UX Strategy Lead → Product Lead (<1 year). Team: 200+, 7 scrum teams, $4M budget.
 Built: Proactive digital onboarding reaching patients before plan changes. Unified digital identity architecture.
 Results: 50K→110M members. NPS +3. Call-ins -18%. $300M+ annual cost avoidance. Scaled to entire book of business.
 AI: Integrated secure LLM, drove GenAI chatbot strategy with exec buy-in.
 
-MOTISPARK (Co-founder) [arielmcnichol.com/portfolio/item/motispark/]
+MOTISPARK (Co-founder)
 What: AI-powered personalized video nudges for patient engagement. Entertainment + behavioral psych + personalization.
 Results: 94% engagement (industry avg 2-5%). 3x provider revenue. 7 states, Medicaid/Medicare populations.
 Patent: US20170193851A1
